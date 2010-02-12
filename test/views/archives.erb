@@ -1,5 +1,9 @@
-<h1><%= @path %></h1>
-<% for entry in archives %>
-  <li class="entry"><%= entry.title %></li>
-<% end %>
-
+<h2>Archives for <%= @selection.join("-") %></h2>
+<ul id="archives">
+  <% @articles.each do |article| %>
+    <li>
+      <a href="<%= article.url %>"><%= article.title %></a>
+      <span class="date"><%= article.date %></span>
+    </li>
+  <% end %>
+</ul>

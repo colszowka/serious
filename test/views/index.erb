@@ -1,7 +1,20 @@
 <ul id="articles">
-  Here come the articels
+  <% @recent.each do |article| %>
+    <li>
+      <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
+      <%= article.date %>
+      <p>
+        <%= format article.summary %>
+      </p>
+    </li>
+  <% end %>
 </ul>
-<div id="archives">
-  Here come the arcived articels
-</div>
+<ul id="archives">
+  <% @archived.each do |article| %>
+    <li>
+      <a href="<%= article.url %>"><%= article.title %></a>
+      <span class="date"><%= article.date %></span>
+    </li>
+  <% end %>
+</ul>
 

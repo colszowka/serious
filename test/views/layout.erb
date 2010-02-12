@@ -4,7 +4,16 @@
   </head>
   
   <body>
-    <%= yield %>
+    <div id="header">
+      <h1><a href="/">Serious Blog</a></h1>
+    </div>
+    <div id="container">
+      <%= yield %>
+    </div>
+    
+    <div id="footer">
+      This blog is <a href="http://github.com/colszowka/serious">serious</a>
+    </div>
   </body>
 </html>
 

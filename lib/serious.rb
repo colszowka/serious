@@ -37,6 +37,19 @@ class Serious < Sinatra::Base
     @archived = Article.all(:limit => 10, :offset => 3)
     erb :index
   end
+  
+  # Specific article route
+  get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\\]+)} do
+    @article = Article.find(*params[:captures])
+    erb :article
+  end
+  
+  # Archives route
+  get %r{^/(\d{4})[/]{0,1}(\d{0,2})[/]{0,1}(\d{0,2})[/]{0,1}$} do
+    @selection = params[:captures].reject {|s| s.strip.length == 0 } # Remove empty ones
+    @articles = Article.find(*@selection)
+    erb :archives
+  end
 end
 
 $:.unshift File.dirname(__FILE__)
