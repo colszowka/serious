@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
@@ -25,22 +25,22 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/serious.rb",
      "lib/serious/article.rb",
+     "lib/site/public/css/coderay.css",
+     "lib/site/public/css/serious.css",
+     "lib/site/views/404.erb",
+     "lib/site/views/_archives.erb",
+     "lib/site/views/_article.erb",
+     "lib/site/views/archives.erb",
+     "lib/site/views/index.erb",
+     "lib/site/views/layout.erb",
      "serious.gemspec",
      "test/articles/2000-01-01-disco-2000.txt",
      "test/articles/2009-04-01-foo-bar.txt",
      "test/articles/2009-12-11-ruby-is-the-shit.txt",
      "test/articles/2009-12-24-merry-christmas.txt",
      "test/helper.rb",
-     "test/public/css/coderay.css",
-     "test/public/css/serious.css",
      "test/test_article.rb",
-     "test/test_serious.rb",
-     "test/views/404.erb",
-     "test/views/_archives.erb",
-     "test/views/_article.erb",
-     "test/views/archives.erb",
-     "test/views/index.erb",
-     "test/views/layout.erb"
+     "test/test_serious.rb"
   ]
   s.homepage = %q{http://github.com/colszowka/serious}
   s.rdoc_options = ["--charset=UTF-8"]

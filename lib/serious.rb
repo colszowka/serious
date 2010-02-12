@@ -60,3 +60,5 @@ require 'serious/article'
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 Serious.set :root, File.join(File.dirname(__FILE__), 'site')
 Serious.set :title, "Serious"
+
+
