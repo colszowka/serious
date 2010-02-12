@@ -71,7 +71,12 @@ class Serious::Article
   
   # Compiles the url for this article
   def url
-    "/#{date.year}/#{"%02d" % date.month}/#{"%02d" % date.day}/#{permalink}"
+    @url ||= "/#{date.year}/#{"%02d" % date.month}/#{"%02d" % date.day}/#{permalink}"
+  end
+  
+  # url combined with Serious.url
+  def full_url
+    @full_url ||= File.join(Serious.url, url)
   end
   
   # Equality comparison

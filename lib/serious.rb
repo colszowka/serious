@@ -3,6 +3,7 @@ gem 'sinatra', '~> 0.9.4'
 require 'sinatra/base'
 require 'stupid_formatter'
 require 'yaml'
+require 'builder'
 
 class Serious < Sinatra::Base
   
@@ -30,9 +31,14 @@ class Serious < Sinatra::Base
 
   # Index page
   get '/' do
-    @recent = Article.all(:limit => 3)
-    @archived = Article.all(:limit => 10, :offset => 3)
+    @recent = Article.all(:limit => Serious.items_on_index)
+    @archived = Article.all(:limit => Serious.archived_on_index, :offset => Serious.items_on_index)
     erb :index
+  end
+  
+  get '/atom.xml' do
+    @articles = Article.all(:limit => Serious.items_in_feed)
+    builder :atom
   end
   
   # Specific article route
@@ -63,6 +69,10 @@ StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 Serious.set :root, File.join(File.dirname(__FILE__), 'site')
 Serious.set :title, "Serious"
 Serious.set :author, "unknown"
+Serious.set :url, 'http://localhost:3000'
+Serious.set :items_in_feed, 25 # Number of items to display in atom feed
+Serious.set :items_on_index, 3 # Number of items to display with summary on main page
+Serious.set :archived_on_index, 10 # Number of items to display small (title only) on main page
 Serious.set :run, false
 Serious.set :environment, :production
 

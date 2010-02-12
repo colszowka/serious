@@ -13,6 +13,7 @@ class Test::Unit::TestCase
   Serious.set :title, "Serious Test Blog"
   Serious.set :articles, File.join(File.dirname(__FILE__), 'articles')
   Serious.set :author, "TheDeadSerious"
+  Serious.set :url, 'http://example.com'
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
   def app

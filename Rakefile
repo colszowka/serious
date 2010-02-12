@@ -12,6 +12,7 @@ begin
     gem.authors = ["Christoph Olszowka"]
     gem.add_dependency 'sinatra', ">= 0.9.4"
     gem.add_dependency 'stupid_formatter', '>= 0.1.1'
+    gem.add_dependency 'builder', ">= 0"
     gem.add_development_dependency "shoulda", ">= 0"
     gem.add_development_dependency "hpricot", ">= 0"
     gem.add_development_dependency "rack-test", ">= 0"

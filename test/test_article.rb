@@ -96,6 +96,10 @@ class TestArticle < Test::Unit::TestCase
     should "return '/2010/01/15/foo-bar' as url" do
       assert_equal '/2010/01/15/foo-bar', @article.url
     end
+    
+    should "return 'http://example.com/2010/01/15/foo-bar' as full_url" do
+      assert_equal 'http://example.com/2010/01/15/foo-bar', @article.full_url
+    end
   end
   
   # Making sure one-digit month and day work as well

@@ -162,4 +162,12 @@ class TestSerious < Test::Unit::TestCase
     setup { get '/foobar.baz' }
     should_respond_with 404
   end
+  
+  # ===================================================================
+  # Tests for the atom feed
+  # ===================================================================
+  context "GET /atom.xml" do
+    setup { get '/atom.xml' }
+    should_respond_with 200
+  end
 end
