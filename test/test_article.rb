@@ -138,26 +138,36 @@ class TestArticle < Test::Unit::TestCase
   # ========================================================================
   # Tests for finder
   # ========================================================================
-  context "When calling find with (2009, 12, 24, 'merry-christmas'), the returned article" do
+  context "When calling find with (2009, 12, 24, 'merry-christmas'), the returned articles" do
     setup do
-      @article = Serious::Article.find(2009, 12, 24, 'merry-christmas')
+      @articles = Serious::Article.find(2009, 12, 24, 'merry-christmas')
     end
     
-    should "have date 2009-12-24" do
-      assert_equal Date.new(2009, 12, 24), @article.date
-    end
+    should("have a length of 1") { assert_equal 1, @articles.length}
     
-    should "have permalink 'merry-christmas'" do
-      assert_equal 'merry-christmas', @article.permalink
+    context "the found article" do
+      setup { @article = @articles.first }
+      
+      should "have date 2009-12-24" do
+        assert_equal Date.new(2009, 12, 24), @article.date
+      end
+
+      should "have permalink 'merry-christmas'" do
+        assert_equal 'merry-christmas', @article.permalink
+      end
+      
+      should "be the same as when calling Serious::Article.first(2009, 12, 24, 'merry-christmas')" do
+        assert_equal @article, Serious::Article.first(2009, 12, 24, 'merry-christmas')
+      end
     end
   end
   
-  should "find article for date '2009, 12, 24' with Serious::Article.find('merry-christmas')" do
-    assert_equal Date.new(2009, 12, 24), Serious::Article.find('merry-christmas').date
+  should "find article for date '2009, 12, 24' with Serious::Article.first('merry-christmas')" do
+    assert_equal Date.new(2009, 12, 24), Serious::Article.first('merry-christmas').date
   end
   
-  should "find article for date '2009, 12, 24' with Serious::Article.find(12, 24)" do
-    assert_equal Date.new(2009, 12, 24), Serious::Article.find(12, 24).date
+  should "find article for date '2009, 12, 24' with Serious::Article.first(12, 24)" do
+    assert_equal Date.new(2009, 12, 24), Serious::Article.first(12, 24).date
   end
   
   context "Serious::Article.find(2009, 12)" do
@@ -179,7 +189,7 @@ class TestArticle < Test::Unit::TestCase
   # ========================================================================
   context "The article 'merry-christmas'" do
     setup do
-      @article = Serious::Article.find('merry-christmas')
+      @article = Serious::Article.first('merry-christmas')
     end
     
     should "not have instance variable @yaml set" do
@@ -217,7 +227,7 @@ class TestArticle < Test::Unit::TestCase
   
   context "The article 'foo-bar'" do
     setup do
-      @article = Serious::Article.find('foo-bar')
+      @article = Serious::Article.first('foo-bar')
     end
     
     should("have title 'Foo Bar'") { assert_equal 'Foo Bar', @article.title }

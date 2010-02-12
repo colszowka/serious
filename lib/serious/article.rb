@@ -20,7 +20,13 @@ class Serious::Article
     #
     def find(*args)
       articles = article_paths.select {|path| File.basename(path) =~ /#{args.join('-')}/i }.map {|path| new(path) }
-      articles.length == 1 ? articles.first : articles
+    end
+    
+    #
+    # Find the article for given arguments (same as find), but returns only the first one
+    #
+    def first(*args)
+      find(*args).first
     end
     
     private
@@ -59,6 +65,13 @@ class Serious::Article
   # Compiles the url for this article
   def url
     "/#{date.year}/#{"%02d" % date.month}/#{"%02d" % date.day}/#{permalink}"
+  end
+  
+  # Equality comparison
+  def ==(article)
+    path == article.path
+  rescue NoMethodError
+    false
   end
   
   private
