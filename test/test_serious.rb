@@ -169,5 +169,8 @@ class TestSerious < Test::Unit::TestCase
   context "GET /atom.xml" do
     setup { get '/atom.xml' }
     should_respond_with 200
+    
+    should_contain_text "Merry Christmas!", "feed entry:first title"
+    should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
   end
 end

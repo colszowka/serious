@@ -3,7 +3,6 @@
 TODO...
 
 == TODO
-* atom
 * caching!
 * valid xhtml in demo setup
 * generator for basic app?
