@@ -11,6 +11,7 @@ require 'serious'
 class Test::Unit::TestCase
   include Rack::Test::Methods
   Serious.root = File.dirname(__FILE__)
+  Serious.set :title, "Serious Test Blog"
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
   def app

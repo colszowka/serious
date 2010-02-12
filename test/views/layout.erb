@@ -3,12 +3,12 @@
   <link rel="stylesheet" type="text/css" href="/css/serious.css">
   <link rel="stylesheet" type="text/css" href="/css/coderay.css">
   <link rel="alternate" type="application/atom+xml" title="Serious Test Layout" href="/atom.xml" />
-  <title>Serious Test Layout</title>
+  <title><%= @article ? @article.title + " - " : "" %><%= Serious.title %></title>
   </head>
   
   <body>
     <div id="header">
-      <h1><a href="/">Serious Blog</a></h1>
+      <h1><a href="/"><%= Serious.title %></a></h1>
     </div>
     <div id="container">
       <%= yield %>

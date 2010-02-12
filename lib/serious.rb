@@ -59,3 +59,4 @@ require 'serious/article'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 Serious.set :root, Dir.getwd
+Serious.set :title, "Serious"

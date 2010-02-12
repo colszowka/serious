@@ -9,6 +9,9 @@ class TestSerious < Test::Unit::TestCase
     setup { get '/' }
     
     should_respond_with 200
+    
+    should_contain_text "Serious Test Blog", "#header h1 a"
+    
     should_contain_elements 3, "ul#articles li"
     should_contain_text "Merry Christmas!", "ul#articles li:first"
     should_contain_text "Merry christmas, dear reader!", "ul#articles li:first"
@@ -19,6 +22,7 @@ class TestSerious < Test::Unit::TestCase
     should_not_contain_text "The number is 4", "ul#articles li"
     
     should_contain_text "Foo Bar", "ul#articles"
+    should_contain_text "Serious Test Blog", "head title"
     
     should_contain_elements 1, "ul.archives li"
     should_contain_text "Disco 2000", "ul.archives li:first"
@@ -113,6 +117,7 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Merry Christmas!", "#container h2:first"
+    should_contain_text "Merry Christmas! - Serious Test Blog", "head title"
     should_contain_text "Merry christmas, dear reader!", ".article .body"
     should_contain_text "Lorem ipsum dolor...", ".article .body"
   end
