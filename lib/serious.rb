@@ -51,7 +51,7 @@ class Serious < Sinatra::Base
     erb :archives
   end
   
-  get "/archive" do
+  get "/archives" do
     @articles = Article.all
     erb :archives
   end

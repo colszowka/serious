@@ -19,6 +19,8 @@ class Serious::Article
     # will not return anything.
     #
     def find(*args)
+      # Reformat arguments (one-digit months and days should be converted to two-digit format)
+      args = args.map {|a| a.to_s =~ /^\d{1}$/ ? "%02d" % a : a }
       articles = article_paths.select {|path| File.basename(path) =~ /#{args.join('-')}/i }.map {|path| new(path) }
     end
     

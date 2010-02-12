@@ -136,7 +136,7 @@ class TestArticle < Test::Unit::TestCase
   end
   
   # ========================================================================
-  # Tests for finder
+  # Tests for finders
   # ========================================================================
   context "When calling find with (2009, 12, 24, 'merry-christmas'), the returned articles" do
     setup do
@@ -168,6 +168,22 @@ class TestArticle < Test::Unit::TestCase
   
   should "find article for date '2009, 12, 24' with Serious::Article.first(12, 24)" do
     assert_equal Date.new(2009, 12, 24), Serious::Article.first(12, 24).date
+  end
+  
+  should "find article for date '2009, 12, 24' with Serious::Article.first('12', '24')" do
+    assert_equal Date.new(2009, 12, 24), Serious::Article.first('12', '24').date
+  end
+  
+  should "find article for date '2000, 1, 1' with Serious::Article.first(2000, 1, 1)" do
+    assert_equal Date.new(2000, 1, 1), Serious::Article.first(2000, 1, 1).date
+  end
+  
+  should "find article for date '2000, 1, 1' with Serious::Article.first('2000', '1', '1')" do
+    assert_equal Date.new(2000, 1, 1), Serious::Article.first('2000', '1', '1').date
+  end
+  
+  should "find article for date '2000, 1, 1' with Serious::Article.first('2000', '01', '01')" do
+    assert_equal Date.new(2000, 1, 1), Serious::Article.first('2000', '01', '01').date
   end
   
   context "Serious::Article.find(2009, 12)" do

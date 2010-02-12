@@ -1,4 +1,5 @@
 title: Ruby is the shit!
 
-Once upon a time...
-
+Some kind of introduction and summary
+~
+The number is <%= 1 + 3 %>
