@@ -40,7 +40,7 @@ class Serious < Sinatra::Base
   
   # Specific article route
   get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\\]+)} do
-    @article = Article.find(*params[:captures])
+    @article = Article.first(*params[:captures])
     erb :article
   end
   
