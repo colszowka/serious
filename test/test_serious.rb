@@ -20,8 +20,8 @@ class TestSerious < Test::Unit::TestCase
     
     should_contain_text "Foo Bar", "ul#articles"
     
-    should_contain_elements 1, "ul#archives li"
-    should_contain_text "Disco 2000", "ul#archives li:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Disco 2000", "ul.archives li:first"
   end
   
   # ===================================================================
@@ -32,10 +32,10 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2009", "#container h2:first"
-    should_contain_elements 3, "ul#archives li"
-    should_contain_text "Merry Christmas!", "ul#archives li:first"
-    should_contain_text "Ruby is the shit!", "ul#archives"
-    should_contain_text "Foo Bar", "ul#archives"
+    should_contain_elements 3, "ul.archives li"
+    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Ruby is the shit!", "ul.archives"
+    should_contain_text "Foo Bar", "ul.archives"
   end
   
   context "GET /2009/12" do
@@ -43,9 +43,9 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2009-12", "#container h2:first"
-    should_contain_elements 2, "ul#archives li"
-    should_contain_text "Merry Christmas!", "ul#archives li:first"
-    should_contain_text "Ruby is the shit!", "ul#archives"
+    should_contain_elements 2, "ul.archives li"
+    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Ruby is the shit!", "ul.archives"
   end  
   
   context "GET /2009/12/11" do
@@ -53,8 +53,8 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2009-12-11", "#container h2:first"
-    should_contain_elements 1, "ul#archives li"
-    should_contain_text "Ruby is the shit!", "ul#archives li:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Ruby is the shit!", "ul.archives li:first"
   end  
   
   context "GET /2000/" do
@@ -62,8 +62,8 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2000", "#container h2:first"
-    should_contain_elements 1, "ul#archives li"
-    should_contain_text "Disco 2000", "ul#archives li:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Disco 2000", "ul.archives li:first"
   end  
   
   context "GET /2005/" do
@@ -71,7 +71,7 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2005", "#container h2:first"
-    should_contain_elements 0, "ul#archives li"
+    should_contain_elements 0, "ul.archives li"
   end  
   
   context "GET /2000/1" do
@@ -79,8 +79,8 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2000-01", "#container h2:first"
-    should_contain_elements 1, "ul#archives li"
-    should_contain_text "Disco 2000", "ul#archives li:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Disco 2000", "ul.archives li:first"
   end
   
   context "GET /2000/1/01" do
@@ -88,8 +88,8 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives for 2000-01-01", "#container h2:first"
-    should_contain_elements 1, "ul#archives li"
-    should_contain_text "Disco 2000", "ul#archives li:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Disco 2000", "ul.archives li:first"
   end
   
   context "GET /archives" do
@@ -97,11 +97,11 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_contain_text "Archives", "#container h2:first"
-    should_contain_elements 4, "ul#archives li"
-    should_contain_text "Merry Christmas!", "ul#archives li:first"
-    should_contain_text "Ruby is the shit!", "ul#archives"
-    should_contain_text "Foo Bar", "ul#archives"
-    should_contain_text "Disco 2000", "ul#archives li:last"
+    should_contain_elements 4, "ul.archives li"
+    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Ruby is the shit!", "ul.archives"
+    should_contain_text "Foo Bar", "ul.archives"
+    should_contain_text "Disco 2000", "ul.archives li:last"
   end
   
   # ===================================================================
