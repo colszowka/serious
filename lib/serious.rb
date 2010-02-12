@@ -14,12 +14,12 @@ class Serious < Sinatra::Base
     # root path to reflect the changes.
     def root=(root)
       @root = root
-      set_paths
+      update_paths
       @root
     end
     
     # Updates views and public paths as subdirectories of root
-    def set_paths
+    def update_paths
       set :views, File.join(root, 'views')
       set :public, File.join(root, 'public')
       set :articles, File.join(root, 'articles')
@@ -38,4 +38,5 @@ class Serious < Sinatra::Base
   end
 end
 
+$:.unshift File.dirname(__FILE__)
 require 'serious/article'
