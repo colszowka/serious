@@ -59,3 +59,5 @@ end
 
 $:.unshift File.dirname(__FILE__)
 require 'serious/article'
+# Set up default stupid_formatter chain
+StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]

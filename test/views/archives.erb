@@ -1,9 +1,2 @@
 <h2>Archives<%= @selection ? " for " + @selection.join("-") : "" %></h2>
-<ul id="archives">
-  <% @articles.each do |article| %>
-    <li>
-      <a href="<%= article.url %>"><%= article.title %></a>
-      <span class="date"><%= article.date %></span>
-    </li>
-  <% end %>
-</ul>
+<%= render :erb, :'_archives', :locals => { :articles => @articles }, :layout => false %>

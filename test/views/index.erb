@@ -9,12 +9,4 @@
     </li>
   <% end %>
 </ul>
-<ul id="archives">
-  <% @archived.each do |article| %>
-    <li>
-      <a href="<%= article.url %>"><%= article.title %></a>
-      <span class="date"><%= article.date %></span>
-    </li>
-  <% end %>
-</ul>
-
+<%= render :erb, :'_archives', :locals => { :articles => @archived }, :layout => false %>
