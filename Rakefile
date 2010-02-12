@@ -12,7 +12,9 @@ begin
     gem.authors = ["Christoph Olszowka"]
     gem.add_dependency 'sinatra', ">= 0.9.4"
     gem.add_dependency 'stupid_formatter', '>= 0.1.1'
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.add_development_dependency "shoulda", ">= 0"
+    gem.add_development_dependency "hpricot", ">= 0"
+    gem.add_development_dependency "rack-test", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
