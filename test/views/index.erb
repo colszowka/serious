@@ -1,11 +1,7 @@
 <ul id="articles">
   <% @recent.each do |article| %>
     <li>
-      <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
-      <%= article.date %>
-      <p>
-        <%= format article.summary %>
-      </p>
+      <%= render_article article, true %>
     </li>
   <% end %>
 </ul>

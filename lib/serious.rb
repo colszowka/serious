@@ -39,6 +39,10 @@ class Serious < Sinatra::Base
     def render_archived(articles)
       render :erb, :'_archives', :locals => { :articles => articles }, :layout => false
     end
+    
+    def render_article(article, summary_only=false)
+      render :erb, :'_article', :locals => { :article => article, :summary_only => summary_only }, :layout => !summary_only
+    end
   end
 
   get '/' do
@@ -50,7 +54,7 @@ class Serious < Sinatra::Base
   # Specific article route
   get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\\]+)} do
     halt 404 unless @article = Article.first(*params[:captures])
-    erb :article
+    render_article @article
   end
   
   # Archives route
