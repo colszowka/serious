@@ -5,26 +5,8 @@ require 'stupid_formatter'
 require 'yaml'
 
 class Serious < Sinatra::Base
-  class << self
-    # Get the current root directory. Defaults to current working directory.
-    def root(*args)
-      @root ||= Dir.getwd
-    end
-    # Update the root directory to given path. set_paths will be invoked after updating the 
-    # root path to reflect the changes.
-    def root=(root)
-      @root = root
-      update_paths
-      @root
-    end
-    
-    # Updates views and public paths as subdirectories of root
-    def update_paths
-      set :views, File.join(root, 'views')
-      set :public, File.join(root, 'public')
-      set :articles, File.join(root, 'articles')
-    end
-  end
+  
+  set :articles, Proc.new { File.join(root, 'articles') }
   
   not_found do
     erb :"404"
@@ -74,3 +56,4 @@ $:.unshift File.dirname(__FILE__)
 require 'serious/article'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
+Serious.set :root, Dir.getwd
