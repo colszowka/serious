@@ -46,4 +46,10 @@ class Test::Unit::TestCase
       assert_no_match /#{text}/, (doc/selector).inner_html
     end
   end
+  
+  def self.should_set_cache_control_to(seconds)
+    should "set Cache-Control header with timeout of #{seconds} seconds" do
+      assert_equal "public, max-age=#{Serious.cache_timeout}", last_response.headers['Cache-Control']
+    end
+  end
 end

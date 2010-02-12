@@ -14,6 +14,10 @@ class Serious < Sinatra::Base
     erb :"404"
   end
   
+  before do
+    headers['Cache-Control'] = "public, max-age=#{Serious.cache_timeout}"
+  end
+  
   helpers do
     def format(text)
       StupidFormatter.result(text)
@@ -73,6 +77,7 @@ Serious.set :url, 'http://localhost:3000'
 Serious.set :items_in_feed, 25 # Number of items to display in atom feed
 Serious.set :items_on_index, 3 # Number of items to display with summary on main page
 Serious.set :archived_on_index, 10 # Number of items to display small (title only) on main page
+Serious.set :cache_timeout, 300
 Serious.set :run, false
 Serious.set :environment, :production
 
