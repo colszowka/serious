@@ -14,6 +14,9 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Disco 2000", "ul#archives li:first"
   end
   
+  # ===================================================================
+  # Tests for the Archives
+  # ===================================================================
   context "GET /2009" do
     setup { get '/2009' }
     
@@ -40,5 +43,29 @@ class TestSerious < Test::Unit::TestCase
     should_contain_elements 1, "ul#archives li"
     should_contain_text "Ruby is the shit!", "ul#archives li:first"
   end  
+  
+  context "GET /2000/" do
+    setup { get '/2000' }
+    
+    should_contain_text "Archives for 2000", "#container h2:first"
+    should_contain_elements 1, "ul#archives li"
+    should_contain_text "Disco 2000", "ul#archives li:first"
+  end  
+  
+  context "GET /2000/1" do
+    setup { get '/2000/1' }
+    
+    should_contain_text "Archives for 2000-01", "#container h2:first"
+    should_contain_elements 1, "ul#archives li"
+    should_contain_text "Disco 2000", "ul#archives li:first"
+  end
+  
+  context "GET /2000/1/01" do
+    setup { get '/2000/1/01' }
+    
+    should_contain_text "Archives for 2000-01-01", "#container h2:first"
+    should_contain_elements 1, "ul#archives li"
+    should_contain_text "Disco 2000", "ul#archives li:first"
+  end
   
 end
