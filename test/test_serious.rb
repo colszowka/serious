@@ -144,4 +144,17 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "The requested page could not be found!", "#container h2:first"
     should_not_contain_text "Well we were born within one hour of each other.", ".article .body"
   end
+  
+  # ===================================================================
+  # Tests for the public folder
+  # ===================================================================
+  context "GET /css/serious.css" do
+    setup { get '/css/serious.css' }
+    should_respond_with 200
+  end
+  
+  context "GET /foobar.baz" do
+    setup { get '/foobar.baz' }
+    should_respond_with 404
+  end
 end

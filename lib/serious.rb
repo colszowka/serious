@@ -7,6 +7,7 @@ require 'yaml'
 class Serious < Sinatra::Base
   
   set :articles, Proc.new { File.join(root, 'articles') }
+  set :static, true # Required to serve static files, see http://www.sinatrarb.com/configuration.html
   
   not_found do
     erb :"404"
@@ -27,6 +28,7 @@ class Serious < Sinatra::Base
     end
   end
 
+  # Index page
   get '/' do
     @recent = Article.all(:limit => 3)
     @archived = Article.all(:limit => 10, :offset => 3)

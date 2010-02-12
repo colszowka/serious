@@ -18,7 +18,7 @@ class Test::Unit::TestCase
   end
   
   def self.should_contain_elements(count, selector)
-    should "contan #{count} elements in '#{selector}'" do
+    should "contain #{count} elements in '#{selector}'" do
       doc = Hpricot.parse(last_response.body)
       assert_equal count, (doc/selector).size
     end
