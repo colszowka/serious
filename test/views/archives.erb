@@ -1,4 +1,4 @@
-<h2>Archives for <%= @selection.join("-") %></h2>
+<h2>Archives<%= @selection ? " for " + @selection.join("-") : "" %></h2>
 <ul id="archives">
   <% @articles.each do |article| %>
     <li>
