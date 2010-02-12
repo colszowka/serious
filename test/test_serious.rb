@@ -136,4 +136,12 @@ class TestSerious < Test::Unit::TestCase
     # Markdown should evaluate properly
     should_contain_text "by Pulp", ".article .body h3:first"
   end
+  
+  context "GET /2009/1/1/disco-2000" do
+    setup { get '/2009/1/1/disco-2000' }
+    
+    should_respond_with 404
+    should_contain_text "The requested page could not be found!", "#container h2:first"
+    should_not_contain_text "Well we were born within one hour of each other.", ".article .body"
+  end
 end

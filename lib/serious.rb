@@ -26,6 +26,10 @@ class Serious < Sinatra::Base
     end
   end
   
+  not_found do
+    erb :"404"
+  end
+  
   helpers do
     def format(text)
       StupidFormatter.result(text)
@@ -45,7 +49,7 @@ class Serious < Sinatra::Base
   
   # Specific article route
   get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\\]+)} do
-    @article = Article.first(*params[:captures])
+    halt 404 unless @article = Article.first(*params[:captures])
     erb :article
   end
   
