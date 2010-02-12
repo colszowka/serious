@@ -6,7 +6,7 @@ require 'yaml'
 
 class Serious < Sinatra::Base
   
-  set :articles, Proc.new { File.join(root, 'articles') }
+  set :articles, Proc.new { File.join(Dir.getwd, 'articles') }
   set :static, true # Required to serve static files, see http://www.sinatrarb.com/configuration.html
   
   not_found do
@@ -58,5 +58,5 @@ $:.unshift File.dirname(__FILE__)
 require 'serious/article'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
-Serious.set :root, Dir.getwd
+Serious.set :root, File.join(File.dirname(__FILE__), 'site')
 Serious.set :title, "Serious"

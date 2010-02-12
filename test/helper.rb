@@ -10,8 +10,8 @@ require 'serious'
 
 class Test::Unit::TestCase
   include Rack::Test::Methods
-  Serious.root = File.dirname(__FILE__)
   Serious.set :title, "Serious Test Blog"
+  Serious.set :articles, File.join(File.dirname(__FILE__), 'articles')
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
   def app
