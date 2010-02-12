@@ -3,14 +3,13 @@
 TODO...
 
 == TODO
-* article author
-* rake tasks for generating new posts
+* atom
 * caching!
+* valid xhtml in demo setup
+* generator for basic app?
+* rake tasks for generating new posts and validating existing
 * disqus (optional)
 * google analytics (optional)
-* valid xhtml in demo setup
-* atom
-* generator for basic app?
 
 == Note on Patches/Pull Requests
  

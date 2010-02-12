@@ -2,6 +2,12 @@
   <span class="date right"><%= article.date %></span>
   <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
   <div class="body">
-    <%= format summary_only ? article.summary : article.body %>
+    <% if summary_only %>
+      <%= format article.summary %>
+    <% else %>
+      <%= format article.body %>
+      <span class="author right">Written by <%= article.author %></span>    
+    <% end %>
   </div>
+
 </div>

@@ -59,9 +59,10 @@ require 'serious/article'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
-# Set up defaults for sinatra
+# Set up defaults for app
 Serious.set :root, File.join(File.dirname(__FILE__), 'site')
 Serious.set :title, "Serious"
+Serious.set :author, "unknown"
 Serious.set :run, false
 Serious.set :environment, :production
 

@@ -25,6 +25,10 @@ h1, h2, h3, h4 {
   float: right;
 }
 
+.author {
+  color: #666;
+}
+
 #header {
   margin: 25px 0px 50px 0px;
 }

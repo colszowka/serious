@@ -52,6 +52,11 @@ class Serious::Article
     @title ||= yaml["title"]
   end
   
+  # Lazy-loading author accessor with fallback to Serious.author
+  def author
+    @author ||= yaml["author"] || Serious.author
+  end
+  
   # Cached lazy-loading of summary
   def summary
     return @summary if @summary

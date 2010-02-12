@@ -12,6 +12,7 @@ class Test::Unit::TestCase
   include Rack::Test::Methods
   Serious.set :title, "Serious Test Blog"
   Serious.set :articles, File.join(File.dirname(__FILE__), 'articles')
+  Serious.set :author, "TheDeadSerious"
   StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 
   def app

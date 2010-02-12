@@ -216,6 +216,10 @@ class TestArticle < Test::Unit::TestCase
       assert_nil @article.instance_variable_get(:@content)
     end
     
+    should "have 'Christoph Olszowka' as author" do
+      assert_equal 'Christoph Olszowka', @article.author
+    end
+    
     context "after getting the article's title" do
       setup { @title = @article.title }
       
@@ -249,6 +253,7 @@ class TestArticle < Test::Unit::TestCase
     should("have title 'Foo Bar'") { assert_equal 'Foo Bar', @article.title }
     should('have summary "Baz!"')  { assert_equal "Baz!\n", @article.summary }
     should('have body "Baz!"')     { assert_equal "Baz!\n", @article.body }
+    should("have 'TheDeadSerious' as author") { assert_equal 'TheDeadSerious', @article.author }
     should('have summary equal to body') { assert_equal @article.summary, @article.body}
   end
   
