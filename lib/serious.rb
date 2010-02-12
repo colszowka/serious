@@ -33,7 +33,8 @@ class Serious < Sinatra::Base
   end
 
   get '/' do
-    @articles = Article.all
+    @recent = Article.all(:limit => 3)
+    @archived = Article.all(:limit => 10, :offset => 3)
     erb :index
   end
 end
