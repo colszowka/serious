@@ -2,6 +2,16 @@
 
 TODO...
 
+== TODO
+* article author
+* rake tasks for generating new posts
+* caching!
+* disqus (optional)
+* google analytics (optional)
+* valid xhtml in demo setup
+* atom
+* generator for basic app?
+
 == Note on Patches/Pull Requests
  
 * Fork the project.
