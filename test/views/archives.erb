@@ -1,2 +1,2 @@
 <h2>Archives<%= @selection ? " for " + @selection.join("-") : "" %></h2>
-<%= render :erb, :'_archives', :locals => { :articles => @articles }, :layout => false %>
+<%= render_archived @articles %>
