@@ -92,6 +92,10 @@ class TestArticle < Test::Unit::TestCase
     should "return permalink 'foo-bar'" do
       assert_equal 'foo-bar', @article.permalink
     end
+    
+    should "return '/2010/01/15/foo-bar' as url" do
+      assert_equal '/2010/01/15/foo-bar', @article.url
+    end
   end
   
   # Making sure one-digit month and day work as well
@@ -107,6 +111,10 @@ class TestArticle < Test::Unit::TestCase
     should "return permalink 'foo-bar'" do
       assert_equal 'foo-bar', @article.permalink
     end
+    
+    should "return '/2010/01/01/foo-bar' as url" do
+      assert_equal '/2010/01/01/foo-bar', @article.url
+    end
   end
   
   context "Serious::Article.new('2010-02-16-some-text-for-permalink.txt')" do
@@ -120,6 +128,10 @@ class TestArticle < Test::Unit::TestCase
     
     should "return permalink 'some-text-for-permalink'" do
       assert_equal 'some-text-for-permalink', @article.permalink
+    end
+    
+    should "return '/2010/02/16/some-text-for-permalink' as url" do
+      assert_equal '/2010/02/16/some-text-for-permalink', @article.url
     end
   end
   

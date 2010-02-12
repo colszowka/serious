@@ -56,6 +56,11 @@ class Serious::Article
     @body ||= content.split("~", 2).join("").chomp
   end
   
+  # Compiles the url for this article
+  def url
+    "/#{date.year}/#{"%02d" % date.month}/#{"%02d" % date.day}/#{permalink}"
+  end
+  
   private
   
     # Will extract the date and permalink from the filename.
