@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
@@ -24,8 +24,23 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "lib/serious.rb",
+     "lib/serious/article.rb",
+     "serious.gemspec",
+     "test/articles/2000-01-01-disco-2000.txt",
+     "test/articles/2009-04-01-foo-bar.txt",
+     "test/articles/2009-12-11-ruby-is-the-shit.txt",
+     "test/articles/2009-12-24-merry-christmas.txt",
      "test/helper.rb",
-     "test/test_serious.rb"
+     "test/public/css/coderay.css",
+     "test/public/css/serious.css",
+     "test/test_article.rb",
+     "test/test_serious.rb",
+     "test/views/404.erb",
+     "test/views/_archives.erb",
+     "test/views/_article.erb",
+     "test/views/archives.erb",
+     "test/views/index.erb",
+     "test/views/layout.erb"
   ]
   s.homepage = %q{http://github.com/colszowka/serious}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -34,7 +49,8 @@ Gem::Specification.new do |s|
   s.summary = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
   s.test_files = [
     "test/test_serious.rb",
-     "test/helper.rb"
+     "test/helper.rb",
+     "test/test_article.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -44,16 +60,22 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_runtime_dependency(%q<stupid_formatter>, [">= 0.1.1"])
-      s.add_development_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_development_dependency(%q<shoulda>, [">= 0"])
+      s.add_development_dependency(%q<hpricot>, [">= 0"])
+      s.add_development_dependency(%q<rack-test>, [">= 0"])
     else
       s.add_dependency(%q<sinatra>, [">= 0.9.4"])
       s.add_dependency(%q<stupid_formatter>, [">= 0.1.1"])
-      s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+      s.add_dependency(%q<shoulda>, [">= 0"])
+      s.add_dependency(%q<hpricot>, [">= 0"])
+      s.add_dependency(%q<rack-test>, [">= 0"])
     end
   else
     s.add_dependency(%q<sinatra>, [">= 0.9.4"])
     s.add_dependency(%q<stupid_formatter>, [">= 0.1.1"])
-    s.add_dependency(%q<thoughtbot-shoulda>, [">= 0"])
+    s.add_dependency(%q<shoulda>, [">= 0"])
+    s.add_dependency(%q<hpricot>, [">= 0"])
+    s.add_dependency(%q<rack-test>, [">= 0"])
   end
 end
 
