@@ -1,9 +1,10 @@
 require 'rubygems'
 gem 'sinatra', '~> 0.9.4'
-require 'sinatra'
+require 'sinatra/base'
 require 'stupid_formatter'
+require 'yaml'
 
-class Serious < Sinatra::Application
+class Serious < Sinatra::Base
   class << self
     # Get the current root directory. Defaults to current working directory.
     def root(*args)
@@ -32,6 +33,9 @@ class Serious < Sinatra::Application
   end
 
   get '/' do
-    erb :article
+    @articles = Article.all
+    erb :index
   end
 end
+
+require 'serious/article'
