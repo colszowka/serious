@@ -2,7 +2,7 @@
 
 Serious is a blog engine inspired by other filesystem-based engines like jekyll (http://jekyllrb.com/) 
 and toto (http://cloudhead.io/toto) and is based upon Sinatra and rack, thus can be hosted
-very easily (and for free) on heroku (http://heroku.com).
+very easily (and for free) on heroku (http://heroku.com). 
 
 The articles are stored in plain text files with an opinionated naming scheme which is used for
 getting the date and permalink of your article: <code>articles/2010-02-14-will-you-be-my-valentine.txt</code>
@@ -101,6 +101,15 @@ The whole archives can be accessed at <code>/archives</code>. Archives by year, 
 are available at <code>/2009</code> (all of 2009), <code>/2009/05</code> (May 2009), 
 <code>/2009/05/15</code> (May 15th 2009).
 
+== Comments with disqus
+
+You can activate comments for articles very easily with disqus (http://disqus.com) by setting
+the <code>disqus</code> property to your disqus-id (e.g. 'myfancysite'). Disqus developer mode will
+be automatically activated for requests served by http://localhost so you can preview your settings
+and layout properly.
+
+  Serious.set :disqus, 'yourid'
+
 == Configuration
 
 Inside your config.ru, you can customize the settings for your Serious site.
@@ -178,6 +187,13 @@ strftime method of Date. It returns the ordinal name of the day. Customize with:
 
   Serious.set :date_format, "%Y-%m-%d"
   
+=== Disqus comments
+
+To enable disqus comments, specify your disqus id with the disqus property. Disqus is disabled 
+by default.
+
+  Serious.set :disqus, 'yourdisqusid'
+  
 === Displayed items
 
 You can specify how many items you want displayed across your site:
@@ -229,7 +245,6 @@ to learn how to add your own formatters or erb helpers.
 * make it possible to host in subdirectories
 * valid xhtml in demo setup
 * rake tasks for generating new posts and validating existing
-* disqus (optional)
 * google analytics (optional)
 * allow for choice between erb/haml templates
 

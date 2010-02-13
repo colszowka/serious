@@ -190,4 +190,29 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Merry Christmas!", "feed entry:first title"
     should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
   end
+  
+  # ===================================================================
+  # Tests for disqus integration
+  # ===================================================================
+  context "With disqus id set" do
+    setup { Serious.set :disqus, 'foobar' }
+    teardown { Serious.set :disqus, false}
+    
+    context "GET /2009/12/24/merry-christmas" do
+      setup { get '/2009/12/24/merry-christmas' }
+      
+      should_contain_text "View the discussion thread.", "#container .article noscript"
+    end
+  end
+  
+  context "With disqus inactive" do
+    setup { Serious.set :disqus, false }
+    
+    context "GET /2009/12/24/merry-christmas" do
+      setup { get '/2009/12/24/merry-christmas' }
+      
+      should_not_contain_text "View the discussion thread.", "#container .article noscript"
+    end
+  end
+  
 end

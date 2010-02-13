@@ -29,6 +29,10 @@ class Serious < Sinatra::Base
     def render_article(article, summary_only=false)
       render :erb, :'_article', :locals => { :article => article, :summary_only => summary_only }, :layout => !summary_only
     end
+    
+    def render_partial(name)
+      render :erb, :"_#{name}", :layout => false
+    end
   end
 
   # Index page
@@ -78,4 +82,5 @@ Serious.set :cache_timeout, 300
 Serious.set :run, false
 Serious.set :environment, :production
 Serious.set :date_format, "%B %o %Y"
+Serious.set :disqus, false
 
