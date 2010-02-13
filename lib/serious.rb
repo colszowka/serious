@@ -19,10 +19,6 @@ class Serious < Sinatra::Base
   end
   
   helpers do
-    def format(text)
-      StupidFormatter.result(text)
-    end
-    
     # Helper for rendering partial _archives
     def render_archived(articles)
       render :erb, :'_archives', :locals => { :articles => articles }, :layout => false

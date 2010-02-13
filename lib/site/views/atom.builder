@@ -13,8 +13,8 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
       xml.published article.date.to_s
       xml.updated article.date.to_s
       xml.author { xml.name article.author }
-      xml.summary format(article.summary), "type" => "html"
-      xml.content format(article.body), "type" => "html"
+      xml.summary article.summary.formatted, "type" => "html"
+      xml.content article.body.formatted, "type" => "html"
     end
   end
 end

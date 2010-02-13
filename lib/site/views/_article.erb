@@ -3,9 +3,9 @@
   <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
   <div class="body">
     <% if summary_only %>
-      <%= format article.summary %>
+      <%= article.summary.formatted %>
     <% else %>
-      <%= format article.body %>
+      <%= article.body.formatted %>
       <span class="author right">Written by <%= article.author %></span>    
     <% end %>
   </div>
