@@ -1,7 +1,7 @@
 = Serious
 
 Serious is a blog engine inspired by other filesystem-based engines like jekyll (http://jekyllrb.com/) 
-and toto (http://cloudhead.io/toto), but is based upon Sinatra and rack and thus can be hosted
+and toto (http://cloudhead.io/toto) and is based upon Sinatra and rack, thus can be hosted
 very easily (and for free) on heroku (http://heroku.com).
 
 The articles are stored in plain text files with an opinionated naming scheme which is used for
