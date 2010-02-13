@@ -31,6 +31,24 @@ namespace :article do
   
   desc "Creates a new article"
   task :create do
-    puts ask('Title?')
+    title = ask('Title?')
+    if date = ask("Date (defaults to #{Date.today})? ") and date.length > 0
+      begin
+        article_date = Date.new(*date.split('-'))
+      rescue => err
+        puts "Whoops, failed to process the date! The format must be #{Date.today}"
+        exit 1
+      end
+    else
+      article_date = Date.today
+    end
+    
+    filename = "#{article_date}-#{title.slugize}.txt"
+    File.open(File.join(Serious.articles, filename), "w") do |article|
+      article.puts "title: #{title}", ""
+      article.puts "Summary here", "~", "Body here"
+    end
+    
+    puts "Created article #{filename}!"
   end
 end
