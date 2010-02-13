@@ -34,9 +34,10 @@ namespace :article do
     title = ask('Title?')
     if date = ask("Date (defaults to #{Date.today})? ") and date.length > 0
       begin
-        article_date = Date.new(*date.split('-'))
+        article_date = Date.new(*date.split('-').map(&:to_i))
       rescue => err
-        puts "Whoops, failed to process the date! The format must be #{Date.today}"
+        puts "Whoops, failed to process the date! The format must be #{Date.today}, you gave #{date}"
+        raise err
         exit 1
       end
     else
