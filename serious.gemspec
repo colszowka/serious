@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION",
      "bin/serious",
+     "lib/ruby_ext.rb",
      "lib/serious.rb",
      "lib/serious/article.rb",
      "lib/site/public/css/coderay.css",
@@ -33,6 +34,8 @@ Gem::Specification.new do |s|
      "lib/site/views/404.erb",
      "lib/site/views/_archives.erb",
      "lib/site/views/_article.erb",
+     "lib/site/views/_disqus.erb",
+     "lib/site/views/_google_analytics.erb",
      "lib/site/views/archives.erb",
      "lib/site/views/atom.builder",
      "lib/site/views/index.erb",
@@ -44,6 +47,7 @@ Gem::Specification.new do |s|
      "test/articles/2009-12-24-merry-christmas.txt",
      "test/helper.rb",
      "test/test_article.rb",
+     "test/test_ruby_ext.rb",
      "test/test_serious.rb"
   ]
   s.homepage = %q{http://github.com/colszowka/serious}
@@ -54,6 +58,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/test_serious.rb",
      "test/helper.rb",
+     "test/test_ruby_ext.rb",
      "test/test_article.rb"
   ]
 
