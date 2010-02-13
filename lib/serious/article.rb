@@ -2,6 +2,10 @@
 # Backend for file-system based articles
 #
 class Serious::Article
+  # Exception for invalid filenames
+  class InvalidFilename < StandardError
+  end
+
   class << self
     #
     # Returns all articles. Can be drilled down by (optional) :limit and :offset options
@@ -86,6 +90,35 @@ class Serious::Article
     false
   end
   
+  # Collection of validation errors
+  def errors
+    @errors || valid?
+  end
+  
+  #
+  # Loads the article and makes sure it can be loaded, formatted etc.. 
+  # Error messages can be read through errors array
+  #
+  def valid?
+    @errors = []
+    errors << "No title given" unless title.kind_of?(String) and title.length > 0
+    errors << "No author given" unless author.kind_of?(String) and author.length > 0
+    
+    begin
+      summary.formatted  
+    rescue => err
+      errors << "Failed to format summary"
+    end
+    
+    begin
+      body.formatted
+    rescue => err
+      errors << "Failed to format body"
+    end
+  ensure
+    return errors.length == 0
+  end
+  
   private
   
     # Will extract the date and permalink from the filename.
@@ -93,6 +126,8 @@ class Serious::Article
       match = File.basename(path).match(/(\d{4})-(\d{1,2})-(\d{1,2})-([^\.]+)/)
       @date = Date.new(match[1].to_i, match[2].to_i, match[3].to_i)
       @permalink = match[4]
+    rescue NoMethodError => err
+      raise InvalidFilename, "Failed to extract date or permalink from #{File.basename(path)}"
     end
     
     #
@@ -100,7 +135,7 @@ class Serious::Article
     # the content in @content
     #
     def load!
-      return [@yaml, @content] if @yaml and @content
+      return true if @yaml and @content
       yaml, @content = File.read(path).split(/\n\n/, 2)
       @yaml = YAML.load(yaml)
     end

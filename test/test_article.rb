@@ -152,6 +152,10 @@ class TestArticle < Test::Unit::TestCase
     context "the found article" do
       setup { @article = @articles.first }
       
+      should "be valid" do
+        assert @article.valid?
+      end
+      
       should "have date 2009-12-24" do
         assert_equal Date.new(2009, 12, 24), @article.date
       end
@@ -254,6 +258,9 @@ class TestArticle < Test::Unit::TestCase
       @article = Serious::Article.first('foo-bar')
     end
     
+    should "be valid" do
+      assert @article.valid?
+    end
     should("have title 'Foo Bar'") { assert_equal 'Foo Bar', @article.title }
     should('have summary "Baz!"')  { assert_equal "Baz!\n", @article.summary }
     should('have body "Baz!"')     { assert_equal "Baz!\n", @article.body }
@@ -261,4 +268,71 @@ class TestArticle < Test::Unit::TestCase
     should('have summary equal to body') { assert_equal @article.summary, @article.body}
   end
   
+  # ========================================================================
+  # Tests for validation
+  # ========================================================================
+  context "An article with invalid ERb content" do
+    setup do 
+      @article = Serious::Article.new('2009-12-12-foo-bar.txt')
+      @article.instance_variable_set :@yaml, {"title" => "Foo Bar"}
+      @article.instance_variable_set :@content, "Some stupid text with <% invalid %>"
+    end
+    
+    should("not be valid") { assert !@article.valid? }
+    context "after validating" do
+      setup { @article.valid? }
+      
+      should "include 'Failed to format body' in errors" do 
+        assert @article.errors.include?('Failed to format body'), @article.errors.inspect
+      end
+      
+      should "include 'Failed to format summary' in errors" do 
+        assert @article.errors.include?('Failed to format summary'), @article.errors.inspect
+      end
+    end
+  end
+  
+  context "An article with missing title and author" do
+    setup do 
+      @article = Serious::Article.new('2009-12-12-foo-bar.txt')
+      @article.instance_variable_set :@yaml, {"title" => nil, "author" => nil}
+      @article.instance_variable_set :@content, "Some stupid text"
+    end
+    
+    should("not be valid") { assert !@article.valid? }
+    context "after validating" do
+      setup { @article.valid? }
+      
+      should "include 'No title given' in errors" do 
+        assert @article.errors.include?('No title given'), @article.errors.inspect
+      end
+      
+      should "not include 'No author given' in errors" do 
+        assert !@article.errors.include?('No author given'), @article.errors.inspect
+      end
+      
+      context "after setting @author to '' and revalidating" do
+        setup do
+          @article.instance_variable_set :@author, ''
+          @article.valid?
+        end
+        
+        should "include 'No title given' in errors" do 
+          assert @article.errors.include?('No title given'), @article.errors.inspect
+        end
+        
+        should "include 'No author given' in errors" do 
+          assert @article.errors.include?('No author given'), @article.errors.inspect
+        end
+      end
+    end
+  end
+  
+  context "An article with invalid Filename" do
+    should "raise Serious::Article::InvalidFilename exception on load" do 
+      assert_raise Serious::Article::InvalidFilename do
+        @article = Serious::Article.new('2009-12_12-foo-bar.txt')
+      end
+    end
+  end
 end

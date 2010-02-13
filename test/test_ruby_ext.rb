@@ -66,4 +66,14 @@ class TestRubyExt < Test::Unit::TestCase
   should("return '4th' for 4.ordinal") { assert_equal '4th', 4.ordinal}
   should("return '31st' for 31.ordinal") { assert_equal '31st', 31.ordinal}
   
+  # ========================================================================
+  # Tests for slugize
+  # ========================================================================
+  should_slugize 'Foo Bar Baz', 'foo-bar-baz'
+  should_slugize ' Foo Bar_Baz ', 'foo-bar-baz'
+  should_slugize 'A Crazy Title with: Special Chars!', 'a-crazy-title-with-special-chars'
+  should_slugize 'We have 0123 numbers in here', 'we-have-0123-numbers-in-here'
+  should_slugize 'and we have !? more special char$', 'and-we-have-more-special-char'
+  should_slugize 'should--squeeze$', 'should-squeeze'
+  
 end

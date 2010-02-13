@@ -87,6 +87,12 @@ File.open(".gems", "w+") do |gems|
   gems.puts "serious --version '>= #{File.read(File.join(GEM_ROOT, 'VERSION')).strip.chomp}'"
 end
 
+puts "Creating Rakefile"
+File.open('Rakefile', "w+") do |rake|
+  rake.puts "require 'serious'"
+  rake.puts "require 'serious/tasks'"
+end
+
 if git?
   puts "Creating git repo"
   system "git init"

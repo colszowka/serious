@@ -27,3 +27,9 @@ class Fixnum
     end
   end
 end
+
+class String
+  def slugize
+    self.downcase.gsub(/[^a-z0-9\-]/, '-').squeeze('-').gsub(/^\-/, '').gsub(/\-$/, '')
+  end
+end

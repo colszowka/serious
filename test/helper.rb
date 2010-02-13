@@ -59,4 +59,10 @@ class Test::Unit::TestCase
       assert_equal "public, max-age=#{Serious.cache_timeout}", last_response.headers['Cache-Control']
     end
   end
+  
+  def self.should_slugize(input, expectation)
+    should "return '#{expectation}' for '#{input}'.slugize" do
+      assert_equal expectation, input.slugize
+    end
+  end
 end
