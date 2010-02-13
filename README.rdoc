@@ -1,14 +1,184 @@
-= serious
+= Serious
 
-TODO...
+Serious is a blog engine inspired by other filesystem-based engines like jekyll[link:http://jekyllrb.com/] 
+and toto[link:http://cloudhead.io/toto], but is based upon Sinatra and rack and thus can be hosted
+very easily (and for free) on heroku[link:http://heroku.com].
+
+The articles are stored in plain text files with an opinionated naming scheme which is used for
+getting the date and permalink of your article: <code>articles/2010-02-14-will-you-be-my-valentine.txt</code>
+
+The actual content of the article is lazy-loaded only when accessed, so things don't get messy when a lot
+of articles has to be maintained. Articles consist of a YAML front, an optional summary and the body,
+so a basic article looks something like this:
+
+  title: My shiny article
+  author: Christoph Olszowka
+  
+  Some nice summary.
+  ~
+  ## Some content. You can use markdown in your articles, and also <%= "erb" %>
+  <% highlight do %>
+    puts 'it will also syntax-highlight your codes'
+  <% end %>
+  
+There are quite a few assumptions made by this format: You have to specify your title in yaml format
+upfront. You can also specify an author for this article. If you don't, it will fall-back to the
+default one (see configuration). Then two newlines must follow to seperate the yaml from the actual
+content. After this, you can type your blog post. If you want a summary, add in the summary/body
+delimiter "~", so Serious knows what you want.
+  
+Serious makes use of StupidFormatter[link:http://github.com/colszowka/stupid_formatter] for formatting
+your articles, so you get ERb, Markdown and Coderay syntax highlighting for free and can customize
+the processing chain to your liking, add custom ERb helpers and so on. See the {documentation of
+stupid_formatter}[link:http://rdoc.info/projects/colszowka/stupid_formatter] to learn how to 
+customize the formatting.
+
+== Getting started
+
+Install the gem:
+  
+  sudo gem install serious
+
+Since a basic template and css are provided inside the gem, all you've got to do is set up a directory
+for your new blog, create an articles folder, a config.ru and (for heroku), a .gems file.
+
+The directory structure would be something like:
+
+  serious_blog/
+  - articles
+    - articles/2010-02-14-will-you-be-my-valentine.txt
+  - config.ru
+  - .gems
+  
+The config.ru is pretty straight-forward if you want to stick to the defaults:
+
+  require 'serious'
+  Serious.set :title, "My Sweet Little Blog"
+  Serious.set :author, "Christoph Olszowka"
+  Serious.set :url, 'http://mysweetlittleblog.heroku.com'
+  run Serious
+  
+The .gems file if you want to host on heroku:
+
+  stupid_formatter --version '>= 0.2.0'
+  serious --version '>= 0.1.2'
+  
+Note that sinatra is not included in the gemfile since heroku has it installed by default, but serious
+will install it as a gem dependency on other systems as well.
+
+Assuming you've got the heroku gem installed and set up and you've set up git for your blog with
+<code>git init</code>, you can now do:
+  
+  heroku create mysweetlittleblog
+  git push heroku master
+  
+Point your browser to the url, and bang, you're ready!
+
+== Configuration
+
+Inside your config.ru, you can customize the settings for your Serious site.
+
+=== Custom view templates or public folder
+
+==== Changing the path to the public folder
+  
+Say you want to stick with the default view templates, but are willing to customize the css
+to make things prettier. You can do so. Get the provided css from <code>lib/serious/site/public</code>
+and point Serious to your new public folder, which assumingly lies in the current working directory
+(which is where your config.ru file is)
+  
+  Serious.set :public, File.join(Dir.getwd, 'public')
+  
+Serious will now serve the public directory from your custom location, but still get the views
+provided with the gem.
+
+==== Changing the path to the views
+
+Accordingly, if you want to stick with the default css, but want to customize the templates (would anyone
+want to do this?), specify the views path and get the provided ones from the gem as a starting point.
+
+  Serious.set :views, File.join(Dir.getwd, 'views')
+  
+==== Setting the root
+
+The most likely case though will surely be that you want to move both <code>public</code> and 
+<code>views</code> into your site. Again, just copy over the provided assets from the gems
+<code>lib/serious/site/</code> folder into your own site and modify them to your liking.
+You'll have to specify a new root for your site, set to the current working directory, where
+your config.ru resides:
+
+  Serious.set :root, Dir.getwd
+  
+Note that you do not have to specify the views and public folders separately, they'll be hosted
+from the roots views and public subdirectory.
+
+=== The title
+
+The title is used for your atom feed, the site name and so on. It defaults to 'Serious' and you 
+can specify it with:
+
+  Serious.set :title, "My Sweet Little Blog"
+
+=== The author
+
+If you don't want to specify the author for each article separately in the YAML front matter,
+you can define the blog author, which will be used as a fall-back when no custom article author
+is given in the YAML. It defaults to 'unknown'
+
+  Serious.set :author, "Christoph Olszowka"
+  
+=== The url
+
+Well, your site has to know where it lives to provide proper links in your atom feed. Configure this
+with the url setting, which defaults to 'http://localhost:3000'
+  
+  Serious.set :url, 'http://localhost:3000'
+  
+=== Displayed items
+
+You can specify how many items you want displayed across your site:
+
+==== Amount of feed items
+
+To customize the amount of items in your atom feed (living under /atom.xml), set the 
+items_in_feed property to an integer. This defaults to 25.
+  
+  Serious.set :items_in_feed, 50
+  
+==== Amount of items with summary on index
+
+On your index page, the most recent items will be displayed including the summary (or the whole
+post if you did not use the summary/body delimiter). This defaults to 3 items, but can be customized:
+
+  Serious.set :items_on_index, 5
+  
+==== Amount of archive items on index
+
+Below the items with summaries on your main page, there's also a list of 'archived' items, which
+only includes the title and date. This defaults to 10 items, but can be customized as well:
+
+  Serious.set :archived_on_index, 10
+  
+=== Cache timeout
+
+All pages served are automatically getting a Cache-Control header, so they get cached in your
+visitor's browsers as well as in {Varnish on Heroku}[link:http://docs.heroku.com/http-caching] 
+(or some similar tool when you host yourself). The timeout is set to 300 seconds by default, but
+can be customized with:
+
+  Serious.set :cache_timeout, 300
 
 == TODO
-* caching!
+
+* static pages
+* make summary delim configurable
+* make caching better
 * valid xhtml in demo setup
 * generator for basic app?
 * rake tasks for generating new posts and validating existing
 * disqus (optional)
 * google analytics (optional)
+* allow for choice between erb/haml templates
 
 == Note on Patches/Pull Requests
  
