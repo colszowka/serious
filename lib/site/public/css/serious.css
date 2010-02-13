@@ -83,6 +83,12 @@ h1, h2, h3, h4 {
   color: black;
 }
 
+#container blockquote {
+  background-color: #fafafa;
+  margin: 0 0 25px 0;
+  padding: 25px;
+}
+
 
 #footer {
   margin-top: 50px;
