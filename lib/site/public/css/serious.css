@@ -30,11 +30,19 @@ h1, h2, h3, h4 {
 }
 
 #header {
-  margin: 25px 0px 50px 0px;
+  margin: 0px 0px 25px 0px;
+  padding: 25px;
+  text-align: center;
+  border-bottom: 3px solid #BE2805;
+}
+
+#header h1 {
+  font-family: 'Baskerville', Georgia, Times, serif;
+  font-size: 28px;
 }
 
 #header a {
-  color: black;
+  color: #666;
   text-decoration: none;
 }
 
@@ -64,7 +72,15 @@ h1, h2, h3, h4 {
 }
 
 #container .article {
-  margin-bottom: 50px;
+  margin-bottom: 80px;
+}
+
+#container .body a {
+  color: #BE2805;
+}
+
+#container .body a:hover {
+  color: black;
 }
 
 

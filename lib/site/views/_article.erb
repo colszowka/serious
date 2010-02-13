@@ -4,6 +4,7 @@
   <div class="body">
     <% if summary_only %>
       <%= article.summary.formatted %>
+      <span class="right date"><a href="<%= article.url %>">read on...</a></span>
     <% else %>
       <%= article.body.formatted %>
       <span class="author right">Written by <%= article.author %></span>    
