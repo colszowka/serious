@@ -65,6 +65,11 @@ class Serious < Sinatra::Base
     @articles = Article.all
     erb :archives
   end
+  
+  get "/pages/:page" do
+    halt 404 unless @article = Page.first(params[:page])
+    render_article @article
+  end
 end
 
 require 'serious/article'

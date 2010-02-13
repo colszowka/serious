@@ -268,8 +268,8 @@ class TestSerious < Test::Unit::TestCase
   # ===================================================================
   # Tests for pages
   # ===================================================================
-  context "GET /about" do
-    setup { get '/about' }
+  context "GET /pages/about" do
+    setup { get '/pages/about' }
   
     should_respond_with 200
     should_set_cache_control_to 300
