@@ -74,6 +74,12 @@ Assuming you've got the heroku gem installed and set up and you've set up git fo
   
 Point your browser to the url, and bang, you're ready!
 
+You might also want to test your blog locally. Use thin (<code>sudo gem install thin</code>) with:
+
+  thin -R config.ru start
+  
+And go to <code>localhost:3000</code>
+
 == Configuration
 
 Inside your config.ru, you can customize the settings for your Serious site.
@@ -112,6 +118,14 @@ your config.ru resides:
 Note that you do not have to specify the views and public folders separately, they'll be hosted
 from the roots views and public subdirectory.
 
+=== Setting the articles path
+
+You want your articles hosted from your home directory or fancy a different folder name?
+Use the :article property, which defaults to the articles subdirectory of the current
+working dir (a.k.a. where your config.ru sits)
+
+  Serious.set :articles, '/home/youruser/myblogposts'
+  
 === The title
 
 The title is used for your atom feed, the site name and so on. It defaults to 'Serious' and you 
