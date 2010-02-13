@@ -27,10 +27,6 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
-h3 {
-  font-size: 18px;
-}
-
 .date {
   font-style: italic;
   color: #666;
@@ -110,7 +106,8 @@ h3 {
 }
 
 #disqus_thread h3 {
-  padding: 10px 0px;
+  padding: 15px 0px;
+  font-size: 20px;
 }
 
 #footer {
