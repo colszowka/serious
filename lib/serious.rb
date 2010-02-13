@@ -10,6 +10,7 @@ require 'ruby_ext'
 class Serious < Sinatra::Base
   
   set :articles, Proc.new { File.join(Dir.getwd, 'articles') }
+  set :pages, Proc.new { File.join(Dir.getwd, 'pages') }
   set :static, true # Required to serve static files, see http://www.sinatrarb.com/configuration.html
   
   not_found do
@@ -67,6 +68,7 @@ class Serious < Sinatra::Base
 end
 
 require 'serious/article'
+require 'serious/page'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
 

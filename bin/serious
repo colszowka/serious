@@ -33,6 +33,7 @@ require 'fileutils'
 puts "Creating directory #{DIRNAME}"
 ORIGINAL_DIR = Dir.getwd
 FileUtils.mkdir_p(File.join(DIRNAME, 'articles'))
+FileUtils.mkdir_p(File.join(DIRNAME, 'pages'))
 Dir.chdir(DIRNAME)
 
 GEM_ROOT = File.join(File.dirname(__FILE__), '..')
