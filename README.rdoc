@@ -80,6 +80,12 @@ You might also want to test your blog locally. Use thin (<code>sudo gem install 
   
 Go to <code>localhost:3000</code> and enjoy.
 
+== Archives
+
+The whole archives can be accessed at <code>/archives</code>. Archives by year, month and date
+are available at <code>/2009</code> (all of 2009), <code>/2009/05</code> (May 2009), 
+<code>/2009/05/15</code> (May 15th 2009).
+
 == Configuration
 
 Inside your config.ru, you can customize the settings for your Serious site.
@@ -195,7 +201,9 @@ to learn how to add your own formatters or erb helpers.
 
 * static pages
 * make summary delim configurable
+* beautifuller date formatting in frontend
 * make caching better
+* make it possible to host in subdirectories
 * valid xhtml in demo setup
 * generator for basic app?
 * rake tasks for generating new posts and validating existing
@@ -212,6 +220,11 @@ to learn how to add your own formatters or erb helpers.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
+
+== Thanks
+
+Alexis Sellier for toto, the main inspiration for this gem
+Ryan Bates for the great coderay css
 
 == Copyright
 
