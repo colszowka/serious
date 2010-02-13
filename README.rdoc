@@ -198,6 +198,13 @@ working dir (a.k.a. where your config.ru sits)
 
   Serious.set :articles, '/home/youruser/myblogposts'
   
+=== Setting the pages path
+
+Similarily to the articles path, the pages will be served from your sites working directory's
+subdirectory <code>pages</code>. Customize this with:
+
+  Serious.set :pages, '/home/youruser/mystaticpages'
+  
 === The title
 
 The title is used for your atom feed, the site name and so on. It defaults to 'Serious' and you 
