@@ -100,8 +100,11 @@ if heroku?
     if system "heroku create #{DIRNAME}"
       puts "Pushing to heroku - in 5 seconds"
       sleep 5
-      system 'git push heroku master'
-      puts "Your app now lives at http://#{DIRNAME}.heroku.com"
+      if system 'git push heroku master'
+        puts "Your app now lives at http://#{DIRNAME}.heroku.com"
+      else
+        puts "Failed to push to heroku!"
+      end
     else
       puts "ERROR: Failed to create heroku app"
     end

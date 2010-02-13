@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
+     "bin/serious",
      "lib/serious.rb",
      "lib/serious/article.rb",
      "lib/site/public/css/coderay.css",
