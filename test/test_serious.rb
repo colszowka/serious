@@ -202,6 +202,7 @@ class TestSerious < Test::Unit::TestCase
       setup { get '/2009/12/24/merry-christmas' }
       
       should_contain_text "View the discussion thread.", "#container .article noscript"
+      should_contain_elements 1, "#container #disqus_thread"
     end
   end
   
@@ -212,6 +213,27 @@ class TestSerious < Test::Unit::TestCase
       setup { get '/2009/12/24/merry-christmas' }
       
       should_not_contain_text "View the discussion thread.", "#container .article noscript"
+      should_contain_elements 0, "#container #disqus_thread"
+    end
+  end
+  
+  context "With google analytics active" do
+    setup { Serious.set :google_analytics, 'analyticsid' }
+    
+    context "GET /" do
+      setup { get '/' }
+      
+      should_contain_elements 2, "body script"
+    end
+  end
+  
+  context "With google analytics inactive" do
+    setup { Serious.set :google_analytics, false }
+    
+    context "GET /" do
+      setup { get '/' }
+      
+      should_contain_elements 0, "body script"
     end
   end
   

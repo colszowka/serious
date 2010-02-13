@@ -109,8 +109,16 @@ be automatically activated for requests served by http://localhost so you can pr
 and layout properly.
 
   Serious.set :disqus, 'yourid'
+  
+== Google Analytics
 
-== Configuration
+You can activate Google Analytics by setting the <code>google_analytics</code> property to your 
+tracker id (something like 'UA-123123-5'). The required code will then be included to your site.
+For requests served from http://localhost, the inclusion is skipped.
+
+  Serious.set :google_analytics, 'UA-123123-5'
+
+== Configuration options
 
 Inside your config.ru, you can customize the settings for your Serious site.
 
@@ -190,9 +198,16 @@ strftime method of Date. It returns the ordinal name of the day. Customize with:
 === Disqus comments
 
 To enable disqus comments, specify your disqus id with the disqus property. Disqus is disabled 
-by default.
+by default. See section above for more information on disqus and comments.
 
   Serious.set :disqus, 'yourdisqusid'
+  
+== Google Analytics
+
+To enable google analytics, specify your tracker id at the property <code>google_analytics</code>.
+See section above for more information on Google Analytics.
+
+  Serious.set :google_analytics, 'UA-123123-5'
   
 === Displayed items
 
@@ -245,7 +260,6 @@ to learn how to add your own formatters or erb helpers.
 * make it possible to host in subdirectories
 * valid xhtml in demo setup
 * rake tasks for generating new posts and validating existing
-* google analytics (optional)
 * allow for choice between erb/haml templates
 
 == Note on Patches/Pull Requests
