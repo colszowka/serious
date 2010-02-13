@@ -27,6 +27,10 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+h3 {
+  font-size: 18px;
+}
+
 .date {
   font-style: italic;
   color: #666;
@@ -43,7 +47,7 @@ h1, h2, h3, h4 {
 
 #header {
   margin: 0px 0px 60px 0px;
-  padding: 45px;
+  padding: 30px;
   text-align: center;
   border-bottom: 2px solid #BE2805;
 }
@@ -105,6 +109,9 @@ h1, h2, h3, h4 {
   padding-top: 25px;
 }
 
+#disqus_thread h3 {
+  padding: 10px 0px;
+}
 
 #footer {
   margin-top: 50px;
