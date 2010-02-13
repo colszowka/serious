@@ -212,7 +212,8 @@ See section above for more information on Google Analytics.
 == Custom feed url in layout
 
 If you want to specify a different feed url for the head link tag, for example to point your readers
-to Feedburner, you can do so by specifiyng the <code>feed_url</code> option.
+to Feedburner, you can do so by specifiyng the <code>feed_url</code> option and setting up your
+feed to be burned by feedburner based upon <code>http://yoururl.com/atom.xml</code>.
 
   Serious.set :feed_url, 'http://feeds.feedburner.com/myfeedurl'  
   
