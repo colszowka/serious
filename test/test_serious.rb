@@ -275,7 +275,7 @@ class TestSerious < Test::Unit::TestCase
     should_set_cache_control_to 300
     
     should_contain_text "About me", "#container .article h2" 
-    should_contain_text "Some text about me", "#container .article body" 
-    should_contain_text "And some more content with erb", "#container .article body" 
+    should_contain_text "Some text about me", "#container .article .body" 
+    should_contain_text "And some more content with erb", "#container .article .body" 
   end
 end

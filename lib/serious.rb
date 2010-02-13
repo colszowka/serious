@@ -67,7 +67,7 @@ class Serious < Sinatra::Base
   end
   
   get "/pages/:page" do
-    halt 404 unless @article = Page.first(params[:page])
+    halt 404 unless @article = Page.find(params[:page])
     render_article @article
   end
 end

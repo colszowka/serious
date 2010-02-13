@@ -1,5 +1,7 @@
 <div class="article">
-  <span class="date right"><%= article.date.formatted %></span>
+  <% if article.date %>
+    <span class="date right"><%= article.date.formatted %></span>
+  <% end %>
   <h2><a href="<%= article.url %>"><%= article.title %></a></h2>
   <div class="body">
     <% if summary_only %>
