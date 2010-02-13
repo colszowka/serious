@@ -4,6 +4,8 @@ require 'sinatra/base'
 require 'stupid_formatter'
 require 'yaml'
 require 'builder'
+$:.unshift File.dirname(__FILE__)
+require 'ruby_ext'
 
 class Serious < Sinatra::Base
   
@@ -60,7 +62,6 @@ class Serious < Sinatra::Base
   end
 end
 
-$:.unshift File.dirname(__FILE__)
 require 'serious/article'
 # Set up default stupid_formatter chain
 StupidFormatter.chain = [StupidFormatter::Erb, StupidFormatter::RDiscount]
@@ -76,4 +77,5 @@ Serious.set :archived_on_index, 10 # Number of items to display small (title onl
 Serious.set :cache_timeout, 300
 Serious.set :run, false
 Serious.set :environment, :production
+Serious.set :date_format, "%B %o %Y"
 

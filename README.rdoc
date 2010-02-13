@@ -168,6 +168,15 @@ Well, your site has to know where it lives to provide proper links in your atom 
 with the url setting, which defaults to 'http://localhost:3000'
   
   Serious.set :url, 'http://localhost:3000'
+
+=== The date format
+
+There is a helper in the Date class for formatting dates according to the configuration specified
+in Serious.date_format and which is used in the frontend. It defaults to "%B %o %Y", which expands
+to (i.e.) 'December 24th, 2009'. Notice that %o is a custom flag that is not built-in in the default
+strftime method of Date. It returns the ordinal name of the day. Customize with:
+
+  Serious.set :date_format, "%Y-%m-%d"
   
 === Displayed items
 
@@ -216,7 +225,6 @@ to learn how to add your own formatters or erb helpers.
 
 * static pages
 * make summary delim configurable
-* beautifuller date formatting in frontend
 * make caching better
 * make it possible to host in subdirectories
 * valid xhtml in demo setup

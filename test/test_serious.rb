@@ -16,6 +16,8 @@ class TestSerious < Test::Unit::TestCase
     should_contain_elements 3, "ul#articles li"
     should_contain_text "Merry Christmas!", "ul#articles li:first"
     should_contain_text "Merry christmas, dear reader!", "ul#articles li:first"
+    should_contain_text "December 24th 2009", "ul#articles li:first .date"
+    
     should_not_contain_text "Lorem ipsum dolor...", "ul#articles li:first"
     
     should_contain_text "Ruby is the shit!", "ul#articles"
@@ -50,6 +52,7 @@ class TestSerious < Test::Unit::TestCase
     should_respond_with 200
     should_set_cache_control_to 300
     should_contain_text "Archives for 2009-12", "#container h2:first"
+    should_contain_text 'December 24th 2009', "ul.archives li"
     should_contain_elements 2, "ul.archives li"
     should_contain_text "Merry Christmas!", "ul.archives li:first"
     should_contain_text "Ruby is the shit!", "ul.archives"
