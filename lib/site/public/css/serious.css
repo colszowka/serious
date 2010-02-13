@@ -1,17 +1,28 @@
 body {
   margin: 0 auto;
-  font-family: 'Baskerville', Georgia, Times, serif;
+  font-family: 'Junction', 'Baskerville', Georgia, Times, serif;
   font-size: 20px;
   line-height: 30px;
   width: 800px;
 }
 
+@font-face {
+  font-family: Vollkorn;
+  src: url('/fonts/vollkorn.otf') format("opentype");
+}
+
+@font-face {
+  font-family: 'Yanone Kaffeesatz Thin';
+  src: url('/fonts/YanoneKaffeesatz-Thin.otf') format("opentype");
+}
+
+
 div, p {
-  font-family: 'Baskerville', Georgia, Times, serif;
+  font-family: 'Vollkorn', Georgia, Times, serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: "Helvetica", "Arial", "Verdana", sans-serif;
+  font-family: 'Yanone Kaffeesatz Thin', "Helvetica", "Arial", "Verdana", sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -38,7 +49,7 @@ h1, h2, h3, h4 {
 }
 
 #header h1 {
-  font-family: 'Baskerville', Georgia, Times, serif;
+  font-family: 'Yanone Kaffeesatz Thin', "Helvetica", "Arial", "Verdana", sans-serif;
   font-size: 28px;
 }
 
@@ -100,9 +111,15 @@ h1, h2, h3, h4 {
   color: #666;
   text-align: right;
   font-size: 14px;
+  line-height: 18px;
 }
 
 #footer a {
   text-decoration: none;
   color: black;
+}
+
+#footer p {
+  margin: 0;
+  padding: 0;
 }
