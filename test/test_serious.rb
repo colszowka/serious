@@ -217,6 +217,9 @@ class TestSerious < Test::Unit::TestCase
     end
   end
   
+  # ===================================================================
+  # Tests for google analytics integration
+  # ===================================================================
   context "With google analytics active" do
     setup { Serious.set :google_analytics, 'analyticsid' }
     
@@ -234,6 +237,31 @@ class TestSerious < Test::Unit::TestCase
       setup { get '/' }
       
       should_contain_elements 0, "body script"
+    end
+  end
+  
+  # ===================================================================
+  # Tests for feed url setting
+  # ===================================================================
+  context "With default feed url" do
+    context "GET /" do
+      setup { get '/' }
+      
+      should_contain_attribute "href", "/atom.xml", "head link:last"
+    end
+  end
+  
+  context "With custom feed url" do
+    setup do
+      @original_feed_url = Serious.feed_url
+      Serious.set :feed_url, 'http://feeds.feedburner.com/myfeedurl'
+    end
+    teardown { Serious.set :feed_url, @original_feed_url }
+    
+    context "GET /" do
+      setup { get '/' }
+      
+      should_contain_attribute "href", "http://feeds.feedburner.com/myfeedurl", "head link:last"
     end
   end
   

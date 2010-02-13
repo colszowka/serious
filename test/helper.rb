@@ -47,6 +47,13 @@ class Test::Unit::TestCase
     end
   end
   
+  def self.should_contain_attribute(attribute, text, selector)
+    should "contain '#{text}' in '#{selector}' #{attribute}" do
+      doc = Hpricot.parse(last_response.body)
+      assert_equal text, (doc/selector).first[attribute]
+    end
+  end
+  
   def self.should_set_cache_control_to(seconds)
     should "set Cache-Control header with timeout of #{seconds} seconds" do
       assert_equal "public, max-age=#{Serious.cache_timeout}", last_response.headers['Cache-Control']
