@@ -6,7 +6,9 @@
   <div class="body">
     <% if summary_only %>
       <%= article.summary.formatted %>
-      <span class="right date"><a href="<%= article.url %>">read on...</a></span>
+      <% if article.summary.length != article.body.length %>
+        <span class="right date"><a href="<%= article.url %>">read on...</a></span>
+      <% end %>
     <% else %>
       <%= article.body.formatted %>
       
