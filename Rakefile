@@ -11,6 +11,10 @@ begin
     gem.homepage = "http://github.com/colszowka/serious"
     gem.authors = ["Christoph Olszowka"]
     
+    gem.bindir = 'bin'
+    gem.executables = ['serious']
+    gem.default_executable = 'serious'
+    
     gem.add_dependency 'sinatra', ">= 0.9.4"
     gem.add_dependency 'stupid_formatter', '>= 0.2.0'
     gem.add_dependency 'builder', ">= 2.1.2"

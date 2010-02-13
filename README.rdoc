@@ -18,7 +18,7 @@ so a basic article looks something like this:
   ~
   ## Some content. You can use markdown in your articles, and also <%= "erb" %>
   <% highlight do %>
-    puts 'it will also syntax-highlight your codes'
+    puts "it will also syntax-highlight your codes"
   <% end %>
   
 There are quite a few assumptions made by this format: You have to specify your title in yaml format

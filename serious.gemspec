@@ -5,13 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.1.4"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
   s.date = %q{2010-02-13}
+  s.default_executable = %q{serious}
   s.description = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
   s.email = %q{christoph at olszowka dot de}
+  s.executables = ["serious"]
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
