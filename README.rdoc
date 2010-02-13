@@ -167,6 +167,15 @@ visitor's browsers as well as in {Varnish on Heroku}[link:http://docs.heroku.com
 can be customized with:
 
   Serious.set :cache_timeout, 300
+  
+=== Article formatting
+
+You can define the formatting chain for StupidFormatter with:
+
+  StupidFormatter.chain = [StupidFormatter::RDiscount]
+
+You'll surely want to read the documentation of StupidFormatter[link:http://github.com/colszowka/stupid_formatter]
+to learn how to add your own formatters or erb helpers.
 
 == TODO
 
