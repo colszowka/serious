@@ -91,10 +91,12 @@ Assuming you've got the heroku gem installed and set up and you've set up git fo
   
 Point your browser to the url, and bang, you're ready!
 
-== Running with thin
+== Running locally
 
-You might also want to test your blog locally or host it with thin. 
-Use thin (<code>sudo gem install thin</code>) with:
+You might also want to test your blog locally. Use the <code>rake server</code> command inside
+your site's directory.
+
+You can also use thin (<code>sudo gem install thin</code>) with:
 
   thin -R config.ru start
   
