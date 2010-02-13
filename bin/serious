@@ -31,6 +31,7 @@ end
 
 require 'fileutils'
 puts "Creating directory #{DIRNAME}"
+ORIGINAL_DIR = Dir.getwd
 FileUtils.mkdir_p(File.join(DIRNAME, 'articles'))
 Dir.chdir(DIRNAME)
 
@@ -120,3 +121,5 @@ if heroku?
 end
 
 puts "Done!"
+
+Dir.chdir(ORIGINAL_DIR)

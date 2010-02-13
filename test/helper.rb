@@ -65,4 +65,54 @@ class Test::Unit::TestCase
       assert_equal expectation, input.slugize
     end
   end
+  
+  def self.should_have_file(name, content=nil)
+    should "have file #{name}" do
+      assert File.exist?(name), "#{name} does not exist"
+    end
+    
+    if content and not block_given?
+      should "have content in file #{name} match /#{content}/" do
+        assert_match /#{content}/, File.read(name)
+      end
+    end
+    
+    yield(File.read(name)) if block_given? and File.exist?(name)
+  end
+  
+  def self.should_have_dir(name)
+    should "have directory #{name}" do
+      assert File.directory?(name), "#{name} is not a directory"
+    end
+  end
+  
+  def self.should_not_have_path(name)
+    should "not have directory #{name}" do
+      assert !File.exist?(name), "#{name} exists!"
+    end
+  end
+  
+  def self.should_contain(expect, item)
+    should "contain #{expect}" do
+      assert_match /#{expect}/, item
+    end
+  end
+  
+  def self.should_not_contain(expect, item)
+    should "not contain #{expect}" do
+      assert_no_match /#{expect}/, item
+    end
+  end
+  
+  def self.when_running_serious_with(site_name, arguments="", cache=true)
+    context "when running serious #{site_name} #{arguments}" do
+      setup { assert @output = serious(site_name, arguments, cache) }
+    end
+  end
+  
+  def self.should_print(expect)
+    should("print #{expect}") do
+      assert_match /#{expect}/, @output
+    end
+  end
 end
