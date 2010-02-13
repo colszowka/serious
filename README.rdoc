@@ -202,14 +202,14 @@ by default. See section above for more information on disqus and comments.
 
   Serious.set :disqus, 'yourdisqusid'
   
-== Google Analytics
+=== Google Analytics
 
 To enable google analytics, specify your tracker id at the property <code>google_analytics</code>.
 See section above for more information on Google Analytics.
 
   Serious.set :google_analytics, 'UA-123123-5'
   
-== Custom feed url in layout
+=== Custom feed url in layout
 
 If you want to specify a different feed url for the head link tag, for example to point your readers
 to Feedburner, you can do so by specifiyng the <code>feed_url</code> option and setting up your
