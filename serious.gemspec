@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
      "lib/ruby_ext.rb",
      "lib/serious.rb",
      "lib/serious/article.rb",
+     "lib/serious/page.rb",
      "lib/serious/tasks.rb",
      "lib/site/public/css/coderay.css",
      "lib/site/public/css/serious.css",
@@ -49,8 +50,11 @@ Gem::Specification.new do |s|
      "test/articles/2009-12-11-ruby-is-the-shit.txt",
      "test/articles/2009-12-24-merry-christmas.txt",
      "test/helper.rb",
+     "test/pages/about.txt",
+     "test/pages/foo-bar.txt",
      "test/test_article.rb",
      "test/test_bin.rb",
+     "test/test_page.rb",
      "test/test_ruby_ext.rb",
      "test/test_serious.rb"
   ]
@@ -60,7 +64,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
   s.test_files = [
-    "test/test_bin.rb",
+    "test/test_page.rb",
+     "test/test_bin.rb",
      "test/test_serious.rb",
      "test/helper.rb",
      "test/test_ruby_ext.rb",
