@@ -56,7 +56,9 @@ The directory basic directory structure of your Serious site would be something 
 
   serious_blog/
   - articles
-    - articles/2010-02-14-will-you-be-my-valentine.txt
+    - 2010-02-14-will-you-be-my-valentine.txt
+  - pages
+    - about.txt
   - config.ru
   - .gems
   - Rakefile
@@ -73,14 +75,11 @@ The .gems file if you want to host on heroku:
 
   serious
   
-Note that sinatra is not included in the gemfile since heroku has it installed by default, but serious
-will install it as a gem dependency on other systems as well.
-
-The Rakefile, which is obviously totally optional but highly recommended.
+The Rakefile, which is obviously totally optional but highly recommended looks like this:
 
   require 'serious'
   require 'serious/tasks'
-
+  
 == Creating heroku app manually
 
 Assuming you've got the heroku gem installed and set up and you've set up git for your blog with
@@ -107,6 +106,14 @@ Go to <code>localhost:3000</code> and enjoy.
 The whole archives can be accessed at <code>/archives</code>. Archives by year, month and date
 are available at <code>/2009</code> (all of 2009), <code>/2009/05</code> (May 2009), 
 <code>/2009/05/15</code> (May 15th 2009).
+
+== Static pages
+
+Static pages are quite similar to blog articles, in that their formatting and processing is the same.
+They have a yaml front matter, content that gets piped through the StupidFormatter and so on.
+The filename sans the extension serves as the permalink, pages can be reached via 
+<code>/pages/PERMALINK</code>, so the content in pages/about.txt will be served at 
+<code>/pages/about</code>
 
 == Rake tasks
 

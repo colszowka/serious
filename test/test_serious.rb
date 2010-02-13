@@ -30,6 +30,7 @@ class TestSerious < Test::Unit::TestCase
     should_contain_elements 1, "ul.archives:first li"
     should_contain_text "Disco 2000", "ul.archives li:first"
     
+    should_contain_text "Pages", "h3"
     should_contain_elements 2, "ul.archives:last li"
     should_contain_text "About me", "ul.archives:last li:first"
   end
