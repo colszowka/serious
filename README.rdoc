@@ -59,6 +59,7 @@ The directory basic directory structure of your Serious site would be something 
     - articles/2010-02-14-will-you-be-my-valentine.txt
   - config.ru
   - .gems
+  - Rakefile
   
 The config.ru is pretty straight-forward if you want to stick to the defaults:
 
@@ -70,11 +71,15 @@ The config.ru is pretty straight-forward if you want to stick to the defaults:
   
 The .gems file if you want to host on heroku:
 
-  stupid_formatter
   serious
   
 Note that sinatra is not included in the gemfile since heroku has it installed by default, but serious
 will install it as a gem dependency on other systems as well.
+
+The Rakefile, which is obviously totally optional but highly recommended.
+
+  require 'serious'
+  require 'serious/tasks'
 
 == Creating heroku app manually
 

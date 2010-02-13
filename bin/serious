@@ -84,7 +84,6 @@ end
 
 puts "Creating .gems file"
 File.open(".gems", "w+") do |gems|
-  gems.puts "stupid_formatter"
   gems.puts "serious --version '>= #{File.read(File.join(GEM_ROOT, 'VERSION')).strip.chomp}'"
 end
 
