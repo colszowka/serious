@@ -78,7 +78,7 @@ You might also want to test your blog locally. Use thin (<code>sudo gem install 
 
   thin -R config.ru start
   
-And go to <code>localhost:3000</code>
+Go to <code>localhost:3000</code> and enjoy.
 
 == Configuration
 
