@@ -55,17 +55,9 @@ class TestPage < Test::Unit::TestCase
   # ========================================================================
   # Tests for dynamic loading and processing of title, summary and body
   # ========================================================================
-  context "The page 'merry-christmas'" do
+  context "The page 'about'" do
     setup do
       @page = Serious::Page.find('about')
-    end
-    
-    should "not have instance variable @yaml set" do
-      assert_nil @page.instance_variable_get(:@yaml)
-    end
-    
-    should "not have instance variable @content set" do
-      assert_nil @page.instance_variable_get(:@content)
     end
     
     context "after getting the page's title" do

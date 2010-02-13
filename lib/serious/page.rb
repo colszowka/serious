@@ -4,7 +4,7 @@ class Serious::Page < Serious::Article
     # Returns all pages
     #
     def all
-      page_paths.map { |path| new(path) }
+      @pages ||= page_paths.map { |path| new(path) }
     end
     
     def find(permalink)

@@ -42,7 +42,8 @@ h1, h2, h3, h4 {
 }
 
 #header {
-  margin: 0px 0px 60px 0px;
+  margin: 0;
+  margin-bottom: 30px;
   padding: 30px;
   text-align: center;
   border-bottom: 2px solid #BE2805;

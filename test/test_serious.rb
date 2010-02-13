@@ -27,8 +27,11 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Foo Bar", "ul#articles"
     should_contain_text "Serious Test Blog", "head title"
     
-    should_contain_elements 1, "ul.archives li"
+    should_contain_elements 1, "ul.archives:first li"
     should_contain_text "Disco 2000", "ul.archives li:first"
+    
+    should_contain_elements 2, "ul.archives:last li"
+    should_contain_text "About me", "ul.archives:last li:first"
   end
   
   # ===================================================================
@@ -133,6 +136,7 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Merry Christmas! - Serious Test Blog", "head title"
     should_contain_text "Merry christmas, dear reader!", ".article .body"
     should_contain_text "Lorem ipsum dolor...", ".article .body"
+    should_contain_elements 1, ".article span.author"
   end
   
   context "GET /2009/12/11/ruby-is-the-shit" do
@@ -203,6 +207,14 @@ class TestSerious < Test::Unit::TestCase
       
       should_contain_text "View the discussion thread.", "#container .article noscript"
       should_contain_elements 1, "#container #disqus_thread"
+    end
+    
+    context "GET /pages/about" do
+      setup { get '/pages/about' }
+    
+      should_respond_with 200
+      should_set_cache_control_to 300
+      should_contain_elements 0, "#container #disqus_thread"
     end
   end
   
@@ -279,6 +291,11 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "About me", "ul.archives li:first"
   end
   
+  context "GET /pages/" do
+    setup { get '/pages/' }  
+    should_respond_with 200
+  end if 1 == 2
+  
   context "GET /pages/about" do
     setup { get '/pages/about' }
   
@@ -287,6 +304,12 @@ class TestSerious < Test::Unit::TestCase
     
     should_contain_text "About me", "#container .article h2" 
     should_contain_text "Some text about me", "#container .article .body" 
+    should_contain_elements 0, ".article span.author"
     should_contain_text "And some more content with erb", "#container .article .body" 
   end
+  
+  context "GET /pages/about/" do
+    setup { get '/pages/about/' }  
+    should_respond_with 200
+  end if 1 == 2 # TODO: FIXME
 end
