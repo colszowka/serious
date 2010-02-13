@@ -37,6 +37,7 @@ class TestBin < Test::Unit::TestCase
     
     when_running_serious_with 'foo' do
       should_have_dir 'foo/articles'
+      should_have_dir 'foo/pages'
       should_have_dir 'foo/.git'
       should_have_file 'foo/.gems', 'serious --version'
       should_not_have_path 'foo/public'
@@ -46,6 +47,11 @@ class TestBin < Test::Unit::TestCase
         Dir.chdir('foo')
         assert_match /Initial commit/, `git log`
         Dir.chdir('..')
+      end
+      
+      should_have_file 'foo/pages/about.txt' do |file| 
+        should_contain "title: About", file
+        should_contain "Something about you", file
       end
       
       should_have_file 'foo/config.ru' do |file| 

@@ -67,6 +67,14 @@ end
 copy_views if views?
 copy_public if public?
 
+puts "Writing about page"
+
+File.open('pages/about.txt', "w+") do |about|
+  about.puts "title: About"
+  about.puts
+  about.puts "Something about you"
+end
+
 puts "Writing config.ru"
 File.open('config.ru', 'w+') do |config|
   config.puts "require 'serious'"
