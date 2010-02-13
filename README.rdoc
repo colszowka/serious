@@ -106,6 +106,26 @@ The whole archives can be accessed at <code>/archives</code>. Archives by year, 
 are available at <code>/2009</code> (all of 2009), <code>/2009/05</code> (May 2009), 
 <code>/2009/05/15</code> (May 15th 2009).
 
+== Rake tasks
+
+If you've set up the Rakefile in your site's main directory like mentioned above (this happens 
+automatically when generating with the <code>serious</code> executable), you have the following 
+tasks available:
+
+  rake article:create    # Creates a new article
+  rake article:validate  # Validates all articles, making sure they can be processed correctly
+  rake server            # Runs a server hosting your site on localhost:3000 using rackup
+
+The default is article:create, so to create a new article, just type <code>rake</code>,
+specify your title and optionally a date and you're ready to go!
+
+It's highly recommended that you run the <code>article:validate</code> task before publishing,
+since it will make sure everything gets processed correctly.
+
+Please be aware that you have to run the Rake tasks from the top level directory (where your
+<code>config.ru</code> file resides) since the config.ru file will be loaded to reflect your
+settings.
+
 == Comments with disqus
 
 You can activate comments for articles very easily with disqus (http://disqus.com) by setting
@@ -272,7 +292,6 @@ to learn how to add your own formatters or erb helpers.
 * make caching better
 * make it possible to host in subdirectories
 * valid xhtml in demo setup
-* rake tasks for generating new posts and validating existing
 * allow for choice between erb/haml templates
 
 == Note on Patches/Pull Requests
