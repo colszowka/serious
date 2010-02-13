@@ -1,8 +1,8 @@
 = Serious
 
-Serious is a blog engine inspired by other filesystem-based engines like jekyll[link:http://jekyllrb.com/] 
-and toto[link:http://cloudhead.io/toto], but is based upon Sinatra and rack and thus can be hosted
-very easily (and for free) on heroku[link:http://heroku.com].
+Serious is a blog engine inspired by other filesystem-based engines like jekyll (http://jekyllrb.com/) 
+and toto (http://cloudhead.io/toto), but is based upon Sinatra and rack and thus can be hosted
+very easily (and for free) on heroku (http://heroku.com).
 
 The articles are stored in plain text files with an opinionated naming scheme which is used for
 getting the date and permalink of your article: <code>articles/2010-02-14-will-you-be-my-valentine.txt</code>
@@ -27,10 +27,10 @@ default one (see configuration). Then two newlines must follow to seperate the y
 content. After this, you can type your blog post. If you want a summary, add in the summary/body
 delimiter "~", so Serious knows what you want.
   
-Serious makes use of StupidFormatter[link:http://github.com/colszowka/stupid_formatter] for formatting
+Serious makes use of StupidFormatter (http://github.com/colszowka/stupid_formatter) for formatting
 your articles, so you get ERb, Markdown and Coderay syntax highlighting for free and can customize
-the processing chain to your liking, add custom ERb helpers and so on. See the {documentation of
-stupid_formatter}[link:http://rdoc.info/projects/colszowka/stupid_formatter] to learn how to 
+the processing chain to your liking, add custom ERb helpers and so on. See the documentation of
+stupid_formatter (http://rdoc.info/projects/colszowka/stupid_formatter) to learn how to 
 customize the formatting.
 
 == Getting started
@@ -162,7 +162,7 @@ only includes the title and date. This defaults to 10 items, but can be customiz
 === Cache timeout
 
 All pages served are automatically getting a Cache-Control header, so they get cached in your
-visitor's browsers as well as in {Varnish on Heroku}[link:http://docs.heroku.com/http-caching] 
+visitor's browsers as well as in Varnish on Heroku (http://docs.heroku.com/http-caching) 
 (or some similar tool when you host yourself). The timeout is set to 300 seconds by default, but
 can be customized with:
 
@@ -174,7 +174,7 @@ You can define the formatting chain for StupidFormatter with:
 
   StupidFormatter.chain = [StupidFormatter::RDiscount]
 
-You'll surely want to read the documentation of StupidFormatter[link:http://github.com/colszowka/stupid_formatter]
+You'll surely want to read the documentation of StupidFormatter (http://github.com/colszowka/stupid_formatter)
 to learn how to add your own formatters or erb helpers.
 
 == TODO
