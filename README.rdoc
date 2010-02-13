@@ -61,7 +61,7 @@ The config.ru is pretty straight-forward if you want to stick to the defaults:
 The .gems file if you want to host on heroku:
 
   stupid_formatter --version '>= 0.2.0'
-  serious --version '>= 0.1.2'
+  serious --version '>= 0.1.3'
   
 Note that sinatra is not included in the gemfile since heroku has it installed by default, but serious
 will install it as a gem dependency on other systems as well.
