@@ -2,7 +2,9 @@
   <% articles.each do |article| %>
     <li>
       <a href="<%= article.url %>"><%= article.title %></a>
-      <span class="date"><%= article.date.formatted %></span>
+      <% if article.date %>
+        <span class="date"><%= article.date.formatted %></span>
+      <% end %>
     </li>
   <% end %>
 </ul>

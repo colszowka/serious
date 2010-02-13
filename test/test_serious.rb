@@ -265,9 +265,20 @@ class TestSerious < Test::Unit::TestCase
     end
   end
   
+  
+  
   # ===================================================================
   # Tests for pages
   # ===================================================================
+  context "GET /pages" do
+    setup { get '/pages' }  
+    should_respond_with 200
+    should_set_cache_control_to 300
+    
+    should_contain_elements 2, "ul.archives li"
+    should_contain_text "About me", "ul.archives li:first"
+  end
+  
   context "GET /pages/about" do
     setup { get '/pages/about' }
   

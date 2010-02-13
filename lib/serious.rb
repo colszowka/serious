@@ -56,13 +56,21 @@ class Serious < Sinatra::Base
   
   # Archives route
   get %r{^/(\d{4})[/]{0,1}(\d{0,2})[/]{0,1}(\d{0,2})[/]{0,1}$} do
-    @selection = params[:captures].reject {|s| s.strip.length == 0 }.map {|n| n.length == 1 ? "%02d" % n : n}
-    @articles = Article.find(*@selection)
+    selection = params[:captures].reject {|s| s.strip.length == 0 }.map {|n| n.length == 1 ? "%02d" % n : n}
+    @articles = Article.find(*selection)
+    @title = "Archives for #{selection.join("-")}"
     erb :archives
   end
   
   get "/archives" do
     @articles = Article.all
+    @title = "Archives"
+    erb :archives
+  end
+  
+  get "/pages" do
+    @articles = Page.all
+    @title = "Pages"
     erb :archives
   end
   
