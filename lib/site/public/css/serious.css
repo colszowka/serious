@@ -84,6 +84,11 @@ h1, h2, h3, h4 {
   margin-bottom: 80px;
 }
 
+.body h1, .body h2, .body h3, .body h4, .body h5 {
+  padding-top: 20px;
+  font-size: 95%;
+}
+
 #container .body a {
   color: #BE2805;
 }
