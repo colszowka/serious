@@ -303,11 +303,12 @@ to learn how to add your own formatters or erb helpers.
 
 == TODO
 
-* static pages
-* make summary delim configurable
-* make caching better
-* make it possible to host in subdirectories
+* unescaped special chars in yaml front matter can lead to errors
+* text not readable in android
 * valid xhtml in demo setup
+* make summary delim configurable
+* improve caching
+* make it possible to host in subdirectories
 * allow for choice between erb/haml templates
 
 == Note on Patches/Pull Requests
@@ -319,12 +320,6 @@ to learn how to add your own formatters or erb helpers.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
-
-== Font credits
-
-The fonts supplied with the gem and used by the default theme are Yanone Kaffeesatz
-(http://www.fonts.info/info/en_yanone-kaffeesatz.htm) and Vollkorn (http://friedrichalthausen.de/2006/01/01/vollkorn/), 
-licensed under Creative Commons Attribution 2.0 Generic (http://creativecommons.org/licenses/by/2.0/).
 
 == Thanks
 

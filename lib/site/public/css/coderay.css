@@ -1,13 +1,10 @@
 /* Shamelessly stolen from railscasts.com - thank you Ryan! */
-.CodeRay {
+.CodeRay, pre {
   background-color: #232323;
   border: 1px solid black;
-  font-family: 'Consolas', 'Inconsolata', 'Monaco', 'Courier New', 'Terminal', monospace;
-  line-height: 1.4;
   color: #E6E0DB;
   padding: 3px 5px;
   overflow: auto;
-  font-size: 12px;
   margin: 12px 0;
 }
 .CodeRay pre {
