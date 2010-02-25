@@ -56,7 +56,7 @@ end
 
 desc "Runs a server hosting your site on localhost:3000 using rackup"
 task :server do
-  puts "Server listening on http://localhost:3000"
+  puts "Server launching on http://localhost:3000"
   system "rackup -p 3000 -o localhost"
   puts "Bye!"
 end
