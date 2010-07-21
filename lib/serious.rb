@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'rubygems'
 gem 'sinatra', '>= 1.0.0'
 require 'sinatra/base'
