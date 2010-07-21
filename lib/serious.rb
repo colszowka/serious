@@ -1,4 +1,5 @@
 # encoding: utf-8
+Encoding.default_internal = 'utf-8' if RUBY_VERSION =~ /^1\.9/
 require 'rubygems'
 gem 'sinatra', '>= 1.0.0'
 require 'sinatra/base'
