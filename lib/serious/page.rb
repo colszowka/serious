@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Serious::Page < Serious::Article
   class << self
     #

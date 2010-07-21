@@ -1,3 +1,4 @@
+# encoding: utf-8
 #
 # Backend for file-system based articles
 #
