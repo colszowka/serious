@@ -51,7 +51,7 @@ class Serious < Sinatra::Base
   end
   
   # Specific article route
-  get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\\]+)} do
+  get %r{^/(\d{4})/(\d{1,2})/(\d{1,2})/([^\/]+)} do
     halt 404 unless @article = Article.first(*params[:captures])
     render_article @article
   end
