@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Christoph Olszowka"]
   s.date = %q{2010-08-16}
   s.default_executable = %q{serious}
-  s.description = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
+  s.description = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup.}
   s.email = %q{christoph at olszowka dot de}
   s.executables = ["serious"]
   s.extra_rdoc_files = [
@@ -60,7 +60,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
+  s.summary = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup}
   s.test_files = [
     "test/helper.rb",
      "test/test_article.rb",

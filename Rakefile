@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "serious"
-    gem.summary = %Q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
-    gem.description = %Q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra}
+    gem.summary = %Q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup}
+    gem.description = %Q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup.}
     gem.email = "christoph at olszowka dot de"
     gem.homepage = "http://github.com/colszowka/serious"
     gem.authors = ["Christoph Olszowka"]
