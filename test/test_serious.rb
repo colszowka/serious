@@ -140,6 +140,12 @@ class TestSerious < Test::Unit::TestCase
     should_contain_elements 1, ".article span.author"
   end
   
+  context "GET /2009/12/24/merry-christmas/" do
+    setup { get '/2009/12/24/merry-christmas/' }
+    should_respond_with 200
+    should_contain_text "Merry Christmas!", "#container h2:first"
+  end
+  
   context "GET /2009/12/11/ruby-is-the-shit" do
     setup { get '/2009/12/11/ruby-is-the-shit' }
     
