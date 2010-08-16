@@ -139,7 +139,9 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Lorem ipsum dolor...", ".article .body"
     should_contain_elements 1, ".article span.author"
   end
-  
+
+  # Ensure trailing slashes are possible in urls as well
+  # (fixed in http://github.com/colszowka/serious/commit/b684fad6be15a364e4feba6b4df27ddf404fe610)
   context "GET /2009/12/24/merry-christmas/" do
     setup { get '/2009/12/24/merry-christmas/' }
     should_respond_with 200
