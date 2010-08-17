@@ -92,9 +92,10 @@ File.open('config.ru', 'w+') do |config|
   config.puts 'run Serious'
 end
 
-puts "Creating .gems file"
-File.open(".gems", "w+") do |gems|
-  gems.puts "serious --version '>= #{File.read(File.join(GEM_ROOT, 'VERSION')).strip.chomp}'"
+puts "Creating bundler Gemfile"
+File.open("Gemfile", "w+") do |gems|
+  gems.puts "source :rubygems"
+  gems.puts 'gem "serious", ">= ' + File.read(File.join(GEM_ROOT, 'VERSION')).strip.chomp + '"'
 end
 
 puts "Creating Rakefile"

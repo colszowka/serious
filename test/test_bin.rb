@@ -6,7 +6,7 @@ require 'fileutils'
 # Tests for the serious executable
 # 
 class TestBin < Test::Unit::TestCase
-  context "In tmp" do
+  context "In tmp folder" do
     setup do
       @original_working_dir ||= Dir.getwd
       Dir.chdir(File.dirname(__FILE__))
@@ -16,7 +16,7 @@ class TestBin < Test::Unit::TestCase
     
     when_running_serious_with '' do
       should_print "Usage: serious DIRNAME"
-      should_print "Note: Only lowercase letters and dashes ('-') are allowed for DIRNAME"
+      should_print "Only lowercase letters and dashes"
     end
     
     when_running_serious_with '-foo-' do
@@ -40,15 +40,10 @@ class TestBin < Test::Unit::TestCase
       should_have_dir 'foo/articles'
       should_have_dir 'foo/pages'
       should_have_dir 'foo/.git'
-      should_have_file 'foo/.gems', 'serious --version'
+      should_have_file 'foo/Gemfile', 'gem "serious", "'
       should_not_have_path 'foo/public'
       should_not_have_path 'foo/views'
-      
-      should "match git log with 'Initial commit'" do
-        Dir.chdir('foo')
-        assert_match /Initial commit/, `git log`
-        Dir.chdir('..')
-      end
+      should_have_git_commit 'foo', 'Initial commit'
       
       should_have_file 'foo/pages/about.txt' do |file| 
         should_contain "title: About", file
@@ -69,14 +64,14 @@ class TestBin < Test::Unit::TestCase
       end
       
       when_running_serious_with 'foo', '', false do
-        should("respond with 'foo exists!'") { assert_match /foo exists\!/, @output }
+        should_print 'foo exists'
       end
     end
     
     when_running_serious_with 'public-included', '--public' do
       should_have_dir 'public-included/articles'
       should_not_have_path 'public-included/views'
-      should_have_file 'public-included/.gems'
+      should_have_file 'public-included/Gemfile'
       should_have_file 'public-included/config.ru' do |file|
         should_contain "Serious.set :public, File.join(Dir.getwd, 'public')"
         should_not_contain ":views"
@@ -88,7 +83,7 @@ class TestBin < Test::Unit::TestCase
     when_running_serious_with 'views-included', '--views' do
       should_have_dir 'views-included/articles'
       should_not_have_path 'views-included/public'
-      should_have_file 'views-included/.gems'
+      should_have_file 'views-included/Gemfile'
       should_have_file 'views-included/config.ru' do |file|
         should_contain "Serious.set :views, File.join(Dir.getwd, 'views')"
         should_not_contain ":public"
@@ -99,11 +94,11 @@ class TestBin < Test::Unit::TestCase
     
     when_running_serious_with 'views-and-public', '--views --public' do
       should_have_dir 'views-and-public/articles'
-      should_have_file 'views-and-public/.gems'
+      should_have_file 'views-and-public/Gemfile'
       should_have_file 'views-and-public/config.ru' do |file|
         should_contain "Serious.set :root, Dir.getwd"
         should_not_contain ":public"
-        should_not_contain ":views"        
+        should_not_contain ":views"       
       end
       should_have_file "views-and-public/public/css/serious.css"
       should_have_file "views-and-public/views/layout.erb"

@@ -80,7 +80,7 @@ class Test::Unit::TestCase
         assert_match(/#{content}/, File.read(name))
       end
     end
-    
+
     yield(File.read(name)) if block_given? and File.exist?(name)
   end
   
@@ -109,14 +109,23 @@ class Test::Unit::TestCase
   end
   
   def self.when_running_serious_with(site_name, arguments="", cache=true)
-    context "when running serious #{site_name} #{arguments}" do
+    context("when running serious #{site_name} #{arguments}") do
       setup { assert @output = serious(site_name, arguments, cache) }
+      yield
     end
   end
   
   def self.should_print(expect)
     should("print #{expect}") do
       assert_match(/#{expect}/, @output)
+    end
+  end
+  
+  def self.should_have_git_commit(folder, commit_message)
+    should "match git log with 'Initial commit'" do
+      Dir.chdir(folder)
+      assert_match(/#{commit_message}/, `git log`)
+      Dir.chdir('..')
     end
   end
 end
