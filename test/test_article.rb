@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'helper'
 
 class TestArticle < Test::Unit::TestCase
@@ -231,8 +232,8 @@ class TestArticle < Test::Unit::TestCase
     context "after getting the article's title" do
       setup { @title = @article.title }
       
-      should "have returned 'Merry Christmas!'" do
-        assert_equal 'Merry Christmas!', @title
+      should "have returned 'Merry Christmas! ☃'" do
+        assert_equal 'Merry Christmas! ☃', @title
       end
       
       should "have initialized the @yaml instance variable to a hash" do
@@ -243,12 +244,12 @@ class TestArticle < Test::Unit::TestCase
         assert @article.instance_variable_get(:@content).kind_of?(String)
       end
       
-      should "have summary set to 'Merry christmas, dear reader!'" do
-        assert_equal 'Merry christmas, dear reader!', @article.summary
+      should "have summary set to 'Merry christmas, dear reader! ☃'" do
+        assert_equal 'Merry christmas, dear reader! ☃', @article.summary
       end
       
-      should 'have body set to "Merry christmas, dear reader!\n\nLorem ipsum dolor..."' do
-        assert_equal "Merry christmas, dear reader!\n\nLorem ipsum dolor...", @article.body
+      should 'have body set to "Merry christmas, dear reader! ☃\n\nThis ain\'t rails, yet it has ☃!"' do
+        assert_equal "Merry christmas, dear reader! ☃\n\nThis ain't rails, yet it has ☃!", @article.body
       end
     end
   end

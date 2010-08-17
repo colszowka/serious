@@ -1,6 +1,6 @@
-title: Merry Christmas!
+title: Merry Christmas! ☃
 author: Christoph Olszowka
 
-Merry christmas, dear reader!
+Merry christmas, dear reader! ☃
 ~
-Lorem ipsum dolor...
+This ain't rails, yet it has ☃!

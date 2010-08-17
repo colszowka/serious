@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'helper'
 
 class TestPage < Test::Unit::TestCase
@@ -75,12 +76,12 @@ class TestPage < Test::Unit::TestCase
         assert @page.instance_variable_get(:@content).kind_of?(String)
       end
       
-      should "have summary set to 'Some text about me'" do
-        assert_equal 'Some text about me', @page.summary
+      should "have summary set to 'Some text about me and ☃'" do
+        assert_equal 'Some text about me and ☃', @page.summary
       end
       
-      should 'have formatted body set to "<p>Some text about me</p>\n\n<p>And some more content with erb</p>\n"' do
-        assert_equal "<p>Some text about me</p>\n\n<p>And some more content with erb</p>\n", @page.body.formatted
+      should 'have formatted body set to "<p>Some text about me and ☃</p>\n\n<p>And some more content with erb</p>\n"' do
+        assert_equal "<p>Some text about me and ☃</p>\n\n<p>And some more content with erb</p>\n", @page.body.formatted
       end
     end
   end

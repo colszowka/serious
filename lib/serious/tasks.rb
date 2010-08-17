@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Swallow the actual run method from config.ru
 def run(*args)
 end

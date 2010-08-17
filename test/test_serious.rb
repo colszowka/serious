@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'helper'
 
 class TestSerious < Test::Unit::TestCase
@@ -14,11 +15,11 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Serious Test Blog", "#header h1 a"
     
     should_contain_elements 3, "ul#articles li"
-    should_contain_text "Merry Christmas!", "ul#articles li:first"
-    should_contain_text "Merry christmas, dear reader!", "ul#articles li:first"
+    should_contain_text "Merry Christmas! ☃", "ul#articles li:first"
+    should_contain_text "Merry christmas, dear reader! ☃", "ul#articles li:first"
     should_contain_text "December 24th 2009", "ul#articles li:first .date"
     
-    should_not_contain_text "Lorem ipsum dolor...", "ul#articles li:first"
+    should_not_contain_text "This ain't rails, yet it has ☃!", "ul#articles li:first"
     
     should_contain_text "Ruby is the shit!", "ul#articles"
     should_contain_text "Some kind of introduction and summary", "ul#articles li"
@@ -45,7 +46,7 @@ class TestSerious < Test::Unit::TestCase
     should_set_cache_control_to 300
     should_contain_text "Archives for 2009", "#container h2:first"
     should_contain_elements 3, "ul.archives li"
-    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Merry Christmas! ☃", "ul.archives li:first"
     should_contain_text "Ruby is the shit!", "ul.archives"
     should_contain_text "Foo Bar", "ul.archives"
   end
@@ -58,7 +59,7 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Archives for 2009-12", "#container h2:first"
     should_contain_text 'December 24th 2009', "ul.archives li"
     should_contain_elements 2, "ul.archives li"
-    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Merry Christmas! ☃", "ul.archives li:first"
     should_contain_text "Ruby is the shit!", "ul.archives"
   end  
   
@@ -118,7 +119,7 @@ class TestSerious < Test::Unit::TestCase
     should_set_cache_control_to 300
     should_contain_text "Archives", "#container h2:first"
     should_contain_elements 4, "ul.archives li"
-    should_contain_text "Merry Christmas!", "ul.archives li:first"
+    should_contain_text "Merry Christmas! ☃", "ul.archives li:first"
     should_contain_text "Ruby is the shit!", "ul.archives"
     should_contain_text "Foo Bar", "ul.archives"
     should_contain_text "Disco 2000", "ul.archives li:last"
@@ -133,10 +134,10 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_set_cache_control_to 300
-    should_contain_text "Merry Christmas!", "#container h2:first"
-    should_contain_text "Merry Christmas! - Serious Test Blog", "head title"
-    should_contain_text "Merry christmas, dear reader!", ".article .body"
-    should_contain_text "Lorem ipsum dolor...", ".article .body"
+    should_contain_text "Merry Christmas! ☃", "#container h2:first"
+    should_contain_text "Merry Christmas! ☃ - Serious Test Blog", "head title"
+    should_contain_text "Merry christmas, dear reader! ☃", ".article .body"
+    should_contain_text "This ain't rails, yet it has ☃!", ".article .body"
     should_contain_elements 1, ".article span.author"
   end
 
@@ -145,7 +146,7 @@ class TestSerious < Test::Unit::TestCase
   context "GET /2009/12/24/merry-christmas/" do
     setup { get '/2009/12/24/merry-christmas/' }
     should_respond_with 200
-    should_contain_text "Merry Christmas!", "#container h2:first"
+    should_contain_text "Merry Christmas! ☃", "#container h2:first"
   end
   
   context "GET /2009/12/11/ruby-is-the-shit" do
@@ -200,7 +201,7 @@ class TestSerious < Test::Unit::TestCase
     should_respond_with 200
     should_set_cache_control_to 300
     
-    should_contain_text "Merry Christmas!", "feed entry:first title"
+    should_contain_text "Merry Christmas! &#9731;", "feed entry:first title"
     should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
   end
   
@@ -310,7 +311,7 @@ class TestSerious < Test::Unit::TestCase
     should_set_cache_control_to 300
     
     should_contain_text "About me", "#container .article h2" 
-    should_contain_text "Some text about me", "#container .article .body" 
+    should_contain_text "Some text about me and ☃", "#container .article .body" 
     should_contain_elements 0, ".article span.author"
     should_contain_text "And some more content with erb", "#container .article .body" 
   end

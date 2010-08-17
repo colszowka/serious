@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'rubygems'
 require 'test/unit'
 require 'shoulda'
@@ -37,14 +38,14 @@ class Test::Unit::TestCase
   def self.should_contain_text(text, selector)
     should "contain '#{text}' in '#{selector}'" do
       doc = Hpricot.parse(last_response.body)
-      assert_match /#{text}/, (doc/selector).inner_html
+      assert_match(/#{text}/, (doc/selector).inner_html.force_utf8)
     end
   end
   
   def self.should_not_contain_text(text, selector)
     should "not contain '#{text}' in '#{selector}'" do
       doc = Hpricot.parse(last_response.body)
-      assert_no_match /#{text}/, (doc/selector).inner_html
+      assert_no_match(/#{text}/, (doc/selector).inner_html.force_utf8)
     end
   end
   
@@ -74,7 +75,7 @@ class Test::Unit::TestCase
     
     if content and not block_given?
       should "have content in file #{name} match /#{content}/" do
-        assert_match /#{content}/, File.read(name)
+        assert_match(/#{content}/, File.read(name))
       end
     end
     
@@ -95,13 +96,13 @@ class Test::Unit::TestCase
   
   def self.should_contain(expect, item)
     should "contain #{expect}" do
-      assert_match /#{expect}/, item
+      assert_match(/#{expect}/, item)
     end
   end
   
   def self.should_not_contain(expect, item)
     should "not contain #{expect}" do
-      assert_no_match /#{expect}/, item
+      assert_no_match(/#{expect}/, item)
     end
   end
   
@@ -113,7 +114,7 @@ class Test::Unit::TestCase
   
   def self.should_print(expect)
     should("print #{expect}") do
-      assert_match /#{expect}/, @output
+      assert_match(/#{expect}/, @output)
     end
   end
 end
