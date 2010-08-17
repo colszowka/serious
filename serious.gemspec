@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2010-08-17}
   s.default_executable = %q{serious}
   s.description = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup.}
-  s.email = %q{christoph at olszowka dot de}
+  s.email = %q{christoph at olszowka.de}
   s.executables = ["serious"]
   s.extra_rdoc_files = [
     "LICENSE",
