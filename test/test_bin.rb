@@ -4,6 +4,7 @@ require 'fileutils'
 
 #
 # Tests for the serious executable
+# TODO: Tests for git repo creation
 # 
 class TestBin < Test::Unit::TestCase
   context "In tmp folder" do
@@ -36,10 +37,9 @@ class TestBin < Test::Unit::TestCase
       should_print "Only lowercase-letters and '-' allowed in dirname!"
     end
     
-    when_running_serious_with 'foo' do
+    when_running_serious_with 'foo', '--no-git' do
       should_have_dir 'foo/articles'
       should_have_dir 'foo/pages'
-      should_have_dir 'foo/.git'
       should_have_file 'foo/Gemfile', 'gem "serious", "'
       should_not_have_path 'foo/public'
       should_not_have_path 'foo/views'
@@ -63,12 +63,12 @@ class TestBin < Test::Unit::TestCase
         should_contain "require 'serious/tasks'", file
       end
       
-      when_running_serious_with 'foo', '', false do
+      when_running_serious_with 'foo', '--no-git', false do
         should_print 'foo exists'
       end
     end
     
-    when_running_serious_with 'public-included', '--public' do
+    when_running_serious_with 'public-included', '--no-git --public' do
       should_have_dir 'public-included/articles'
       should_not_have_path 'public-included/views'
       should_have_file 'public-included/Gemfile'
@@ -78,9 +78,10 @@ class TestBin < Test::Unit::TestCase
         should_not_contain ":root"        
       end
       should_have_file "public-included/public/css/serious.css"
+      should_have_file "public-included/public/css/application.css"
     end
     
-    when_running_serious_with 'views-included', '--views' do
+    when_running_serious_with 'views-included', '--no-git --views' do
       should_have_dir 'views-included/articles'
       should_not_have_path 'views-included/public'
       should_have_file 'views-included/Gemfile'
@@ -92,7 +93,7 @@ class TestBin < Test::Unit::TestCase
       should_have_file "views-included/views/layout.erb"
     end
     
-    when_running_serious_with 'views-and-public', '--views --public' do
+    when_running_serious_with 'views-and-public', '--no-git --views --public' do
       should_have_dir 'views-and-public/articles'
       should_have_file 'views-and-public/Gemfile'
       should_have_file 'views-and-public/config.ru' do |file|
@@ -101,6 +102,7 @@ class TestBin < Test::Unit::TestCase
         should_not_contain ":views"       
       end
       should_have_file "views-and-public/public/css/serious.css"
+      should_have_file "views-and-public/public/css/application.css"
       should_have_file "views-and-public/views/layout.erb"
     end
     
