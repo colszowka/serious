@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{serious}
-  s.version = "0.2.12"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christoph Olszowka"]
-  s.date = %q{2010-08-16}
+  s.date = %q{2010-08-17}
   s.default_executable = %q{serious}
   s.description = %q{Serious is a simple, file-driven blog engine inspired by toto and driven by sinatra with an emphasis on easy setup.}
   s.email = %q{christoph at olszowka dot de}
@@ -21,6 +21,9 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
      ".gitignore",
+     "CHANGELOG.rdoc",
+     "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -81,6 +84,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<shoulda>, [">= 2.10.0"])
       s.add_development_dependency(%q<hpricot>, [">= 0.8.0"])
       s.add_development_dependency(%q<rack-test>, [">= 0.5.0"])
+      s.add_development_dependency(%q<jeweler>, [">= 1.4.0"])
     else
       s.add_dependency(%q<sinatra>, [">= 1.0.0"])
       s.add_dependency(%q<stupid_formatter>, [">= 0.2.0"])
@@ -88,6 +92,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<shoulda>, [">= 2.10.0"])
       s.add_dependency(%q<hpricot>, [">= 0.8.0"])
       s.add_dependency(%q<rack-test>, [">= 0.5.0"])
+      s.add_dependency(%q<jeweler>, [">= 1.4.0"])
     end
   else
     s.add_dependency(%q<sinatra>, [">= 1.0.0"])
@@ -96,6 +101,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<shoulda>, [">= 2.10.0"])
     s.add_dependency(%q<hpricot>, [">= 0.8.0"])
     s.add_dependency(%q<rack-test>, [">= 0.5.0"])
+    s.add_dependency(%q<jeweler>, [">= 1.4.0"])
   end
 end
 
