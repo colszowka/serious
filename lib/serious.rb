@@ -3,12 +3,15 @@ if "1.9".respond_to?(:encoding)
   Encoding.default_external = 'UTF-8'
   Encoding.default_internal = 'UTF-8'
 end
+
 require 'rubygems'
-gem 'sinatra', '>= 1.0.0'
+require 'bundler'
+Bundler.setup(:default)
 require 'sinatra/base'
 require 'stupid_formatter'
 require 'yaml'
 require 'builder'
+
 $:.unshift File.dirname(__FILE__)
 require 'ruby_ext'
 

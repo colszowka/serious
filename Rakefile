@@ -23,7 +23,7 @@ begin
     gem.add_development_dependency "shoulda", ">= 2.10.0"
     gem.add_development_dependency "hpricot", ">= 0.8.0"
     gem.add_development_dependency "rack-test", ">= 0.5.0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.add_development_dependency "jeweler", ">= 1.4.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
