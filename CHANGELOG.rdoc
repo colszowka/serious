@@ -1,0 +1,10 @@
+= Changelog for serious
+http://github.com/colszowka/serious
+
+== v0.3.0 (2010-08-17)
+
+ * Fixed encoding issues with Ruby 1.9.1/1.9.2-rc2, added unit tests. Works on Heroku with Ruby 1.9.1 now (colszowka)
+ * Made blog generator (serious command) use Heroku with Ruby 1.9.1 by default (when --heroku switch is active) (colszowka)
+ * Use Bundler Gemfile instead of Heroku .gems file in blog generator (colszowka)
+ * Use Bundler internally for easy development setup (git clone -> bundle install -> rake test) (colszowka)
+ * Trailing slashes in article urls Regexp fixed (rb2k)
