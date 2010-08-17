@@ -8,4 +8,9 @@ group :development do
   gem "hpricot", ">= 0.8.0"
   gem "rack-test", ">= 0.5.0"
   gem 'jeweler', ">= 1.4.0"
+  
+  if "1.9".respond_to?(:encoding)
+    gem "simple_cov", ">= 0.1.2"
+    gem "simple_cov-html", ">= 0.1.1"
+  end
 end
