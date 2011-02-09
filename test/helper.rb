@@ -1,25 +1,17 @@
 # encoding: utf-8
+ENV['RACK_ENV'] = 'test'
 require 'rubygems'
-require 'bundler'
-Bundler.setup(:default, :development)
-if "1.9".respond_to?(:encoding)
-  require 'simple_cov'
-  require 'simple_cov-html'
-  SimpleCov.start do
-    add_filter do |src_file|
-      !(src_file.filename =~ /^#{Dir.getwd}/)
-    end
-  end
-end
+require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start
+
+require 'serious'
 
 require 'test/unit'
 require 'shoulda'
 require 'rack/test'
 require 'hpricot'
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'serious'
 
 class Test::Unit::TestCase
   include Rack::Test::Methods

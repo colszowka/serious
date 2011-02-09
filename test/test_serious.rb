@@ -201,7 +201,7 @@ class TestSerious < Test::Unit::TestCase
     should_respond_with 200
     should_set_cache_control_to 300
     
-    should_contain_text "Merry Christmas! &#9731;", "feed entry:first title"
+    should_contain_text "Merry Christmas! ☃", "feed entry:first title"
     should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
   end
   

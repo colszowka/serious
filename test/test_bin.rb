@@ -40,7 +40,7 @@ class TestBin < Test::Unit::TestCase
     when_running_serious_with 'foo', '--no-git' do
       should_have_dir 'foo/articles'
       should_have_dir 'foo/pages'
-      should_have_file 'foo/Gemfile', 'gem "serious", "'
+      should_have_file 'foo/Gemfile', 'gem "serious"'
       should_not_have_path 'foo/public'
       should_not_have_path 'foo/views'
       should_have_git_commit 'foo', 'Initial commit'

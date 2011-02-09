@@ -95,7 +95,7 @@ end
 puts "Creating bundler Gemfile"
 File.open("Gemfile", "w+") do |gems|
   gems.puts "source :rubygems"
-  gems.puts 'gem "serious", ">= ' + File.read(File.join(GEM_ROOT, 'VERSION')).strip.chomp + '"'
+  gems.puts 'gem "serious"'
 end
 
 puts "Creating Rakefile"

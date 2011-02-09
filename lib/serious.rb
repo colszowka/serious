@@ -11,8 +11,6 @@ require 'sinatra/base'
 require 'stupid_formatter'
 require 'yaml'
 require 'builder'
-
-$:.unshift File.dirname(__FILE__)
 require 'ruby_ext'
 
 class Serious < Sinatra::Base
@@ -88,6 +86,7 @@ class Serious < Sinatra::Base
   end
 end
 
+require 'serious/version'
 require 'serious/article'
 require 'serious/page'
 # Set up default stupid_formatter chain
@@ -103,7 +102,7 @@ Serious.set :items_on_index, 3 # Number of items to display with summary on main
 Serious.set :archived_on_index, 10 # Number of items to display small (title only) on main page
 Serious.set :cache_timeout, 300
 Serious.set :run, false
-Serious.set :environment, :production
+Serious.set :environment, :test
 Serious.set :date_format, "%B %o %Y"
 Serious.set :disqus, false
 Serious.set :google_analytics, false
