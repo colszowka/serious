@@ -201,7 +201,12 @@ class TestSerious < Test::Unit::TestCase
     should_respond_with 200
     should_set_cache_control_to 300
     
-    should_contain_text "Merry Christmas! ☃", "feed entry:first title"
+    # Shit gets escaped on 1.8, while 1.9 copes with SNOWMAN!
+    if "1.9".respond_to?(:encoding)
+      should_contain_text "Merry Christmas! ☃", "feed entry:first title"
+    else
+      should_contain_text "Merry Christmas! &#9731;", "feed entry:first title"
+    end
     should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
   end
   
