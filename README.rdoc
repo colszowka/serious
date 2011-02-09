@@ -74,7 +74,7 @@ The config.ru is pretty straight-forward if you want to stick to the defaults:
 The Gemfile to resolve dependencies (i.e. when hosting on heroku)
 
   source :rubygems
-  gem "serious", ">= 0.3.0"
+  gem "serious"
   
 The Rakefile, which is obviously totally optional but highly recommended looks like this:
 
