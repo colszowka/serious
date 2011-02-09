@@ -81,6 +81,11 @@ The Rakefile, which is obviously totally optional but highly recommended looks l
   require 'serious'
   require 'serious/tasks'
   
+== Supported Rubies
+
+The gem tests are run against 1.8.7, REE, 1.9.1 and 1.9.2, so Serious should run fine at least
+on those interpreters - it is highly recommended to go with 1.9.2 though.
+  
 == Creating heroku app manually
 
 Assuming you've got the heroku gem installed and set up and you've set up git for your blog with
