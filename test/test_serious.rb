@@ -179,7 +179,31 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "The requested page could not be found!", "#container h2:first"
     should_not_contain_text "Well we were born within one hour of each other.", ".article .body"
   end
-  
+
+  context "Get /3010/04/20/we-come-in-peace" do
+    setup do
+      app.set :future, false
+      get '/3010/04/20/we-come-in-peace'
+    end
+
+    should_respond_with 404
+    should_set_cache_control_to 300
+    should_contain_text "The requested page could not be found!", "#container h2:first"
+    should_not_contain_text "We got tied of waiting so we came to say hello", ".article .body"
+  end
+
+  context "Get /3010/04/20/we-come-in-peace" do
+    setup do
+      app.set :future, true
+      get '/3010/04/20/we-come-in-peace'
+    end
+
+    should_respond_with 200
+    should_set_cache_control_to 300
+    should_contain_text "We come in peace!", "#container h2:first"
+    should_contain_text "We got tied of waiting so we came to say hello", ".article .body"
+  end
+
   # ===================================================================
   # Tests for the public folder
   # ===================================================================

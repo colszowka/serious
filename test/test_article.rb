@@ -9,20 +9,20 @@ class TestArticle < Test::Unit::TestCase
     setup do
       @articles = Serious::Article.all
     end
-    
+
     should("return 4 articles") { assert_equal 4, @articles.length }
     should "have only instances of Serious::Article in the collection" do
       assert @articles.all? {|a| a.instance_of?(Serious::Article) }
     end
-    
+
     should "return an existing path for all articles" do
       assert @articles.all? {|a| File.exist? a.path }
     end
-    
+
     should "have 2009-12-24 as the first article's date" do
       assert_equal Date.new(2009, 12, 24), @articles.first.date
     end
-    
+
     should "have 2000-01-01 as the last article's date" do
       assert_equal Date.new(2000, 1, 1), @articles.last.date
     end
