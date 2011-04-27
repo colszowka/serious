@@ -14,7 +14,7 @@ class TestBin < Test::Unit::TestCase
       FileUtils.mkdir('tmp') if not File.exist?('tmp')
       Dir.chdir('tmp')
     end
-    
+
     when_running_serious_with '' do
       should_print "Usage: serious DIRNAME"
       should_print "Only lowercase letters and dashes"
@@ -73,9 +73,9 @@ class TestBin < Test::Unit::TestCase
       should_not_have_path 'public-included/views'
       should_have_file 'public-included/Gemfile'
       should_have_file 'public-included/config.ru' do |file|
-        should_contain "Serious.set :public, File.join(Dir.getwd, 'public')"
-        should_not_contain ":views"
-        should_not_contain ":root"        
+        should_contain "Serious.set :public, File.join\(Dir.getwd, 'public'\)", file
+        should_not_contain ":views", file
+        should_not_contain ":root", file        
       end
       should_have_file "public-included/public/css/serious.css"
       should_have_file "public-included/public/css/application.css"
@@ -86,9 +86,9 @@ class TestBin < Test::Unit::TestCase
       should_not_have_path 'views-included/public'
       should_have_file 'views-included/Gemfile'
       should_have_file 'views-included/config.ru' do |file|
-        should_contain "Serious.set :views, File.join(Dir.getwd, 'views')"
-        should_not_contain ":public"
-        should_not_contain ":root"        
+        should_contain "Serious.set :views, File.join\(Dir.getwd, 'views'\)", file
+        should_not_contain ":public", file
+        should_not_contain ":root", file
       end
       should_have_file "views-included/views/layout.erb"
     end
@@ -97,9 +97,9 @@ class TestBin < Test::Unit::TestCase
       should_have_dir 'views-and-public/articles'
       should_have_file 'views-and-public/Gemfile'
       should_have_file 'views-and-public/config.ru' do |file|
-        should_contain "Serious.set :root, Dir.getwd"
-        should_not_contain ":public"
-        should_not_contain ":views"       
+        should_contain "Serious.set :root, Dir.getwd", file
+        should_not_contain ":public", file
+        should_not_contain ":views", file
       end
       should_have_file "views-and-public/public/css/serious.css"
       should_have_file "views-and-public/public/css/application.css"
@@ -118,20 +118,8 @@ class TestBin < Test::Unit::TestCase
   # Run this only once...
   context "zzz" do
     should "remove tmp at the end" do
-      FileUtils.rm_rf File.expand_path(File.join(File.dirname(__FILE__), 'tmp'))
+      FileUtils.rm_rf File.expand_path('../tmp', __FILE__)
     end
-  end
-  
-  def serious(site_name="", arguments="", cache=true)
-    if cache
-      @cache ||= {}
-      return @cache[site_name] if @cache[site_name]
-    end
-    
-    executable = File.expand_path(File.join(File.dirname(__FILE__), '..', '../../bin/serious'))
-    output = `#{executable} #{site_name} #{arguments}`
-    @cache[site_name] = output if cache
-    output
   end
   
 end
