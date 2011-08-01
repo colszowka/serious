@@ -33,6 +33,9 @@ the processing chain to your liking, add custom ERb helpers and so on. See the d
 stupid_formatter (http://rdoc.info/projects/colszowka/stupid_formatter) to learn how to 
 customize the formatting.
 
+Articles with a date in the future will not appear on the site, thus allowing you to prepare article
+that should be published later.
+
 == Getting started
 
 Install the gem:
