@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   
   s.bindir = 'bin'
   s.executables = ['serious']
-  s.default_executable = 'serious'
   
   s.add_dependency 'sinatra', ">= 1.0.0"
   s.add_dependency 'stupid_formatter', '>= 0.2.0'

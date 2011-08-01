@@ -13,9 +13,15 @@ class Serious::Article
     #
     def all(options={})
       options = {:limit => 10000, :offset => 0}.merge(options)
-      (article_paths[options[:offset]...options[:limit]+options[:offset]] || []).map {|article_path| new(article_path) }
+      now = DateTime.now
+      articles = article_paths.map do |article_path|
+        article = new(article_path)
+        article if article && (Serious.future || article.date <= now)
+      end.compact[options[:offset]...options[:limit]+options[:offset]]
+      
+      articles || []
     end
-    
+
     #
     # Retrieves the article(s) for the given arguments. The arguments must be part of the filename.
     # You can give any combination, but the arguments must appear in the same order as given in the
@@ -26,7 +32,11 @@ class Serious::Article
     def find(*args)
       # Reformat arguments (one-digit months and days should be converted to two-digit format)
       args = args.map {|a| a.to_s =~ /^\d{1}$/ ? "%02d" % a : a }
-      articles = article_paths.select {|path| File.basename(path) =~ /#{args.join('-')}/i }.map {|path| new(path) }
+      now = DateTime.now
+      articles = article_paths.select {|path| File.basename(path) =~ /#{args.join('-')}/i }.map do |path|
+        article = new(path)
+        article if article && (Serious.future || article.date <= now)
+      end.compact
     end
     
     #

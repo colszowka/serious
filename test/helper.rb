@@ -100,7 +100,8 @@ class Test::Unit::TestCase
   
   def self.should_contain(expect, item)
     should "contain #{expect}" do
-      assert_match(/#{expect}/, item)
+      # expect = Regex.new(expect) unless expect.kind_of(Regex)
+      assert_match(expect, item)
     end
   end
   
@@ -129,5 +130,17 @@ class Test::Unit::TestCase
       assert_match(/#{commit_message}/, `git log`)
       Dir.chdir('..')
     end
+  end
+
+  def serious(site_name="", arguments="", cache=true)
+    if cache
+      @cache ||= {}
+      return @cache[site_name] if @cache[site_name]
+    end
+    
+    executable = File.expand_path('../../bin/serious', __FILE__)
+    output = `#{executable} #{site_name} #{arguments}`
+    @cache[site_name] = output if cache
+    output
   end
 end
