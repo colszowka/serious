@@ -1,7 +1,10 @@
 # encoding: utf-8
 
-# Swallow the actual run method from config.ru
+# Swallow the actual run and use methods from config.ru so config can be fetched
+# without NoMethodError...
 def run(*args)
+end
+def use(*args)
 end
 
 begin
