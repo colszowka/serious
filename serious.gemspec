@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency "shoulda", "2.10.3"
   s.add_development_dependency "hpricot", ">= 0.8.0"
   s.add_development_dependency "rack-test", ">= 0.5.0"
+  s.add_development_dependency "rake", ">= 0.8.7"
+  s.add_development_dependency "rdoc"
   s.add_development_dependency 'simplecov'
 
   s.files         = `git ls-files`.split("\n")
