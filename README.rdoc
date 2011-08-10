@@ -144,6 +144,30 @@ Please be aware that you have to run the Rake tasks from the top level directory
 <code>config.ru</code> file resides) since the config.ru file will be loaded to reflect your
 settings.
 
+== Creating routes by extending Serious
+
+If you'd like to create your own routes or use other features from Sinatra you can do that by 
+extending Serious. Create a ruby file in the root of your Serious blog. We'll create our own 
+class that extends Serious. Name the file and class however you like. For the following example 
+we'll go with a filename of app.rb and a class named MyApp.
+
+  require 'serious'
+    
+    class MyApp < Serious
+      # define your custom routes
+    end
+    
+  end
+
+From there all that is left is to update the config.ru file with the following:
+
+  require 'serious'
+  require './app'
+  
+  # Serious config overrides here if any...
+  
+  run MyApp
+
 == Comments with disqus
 
 You can activate comments for articles very easily with disqus (http://disqus.com) by setting
