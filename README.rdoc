@@ -33,8 +33,10 @@ the processing chain to your liking, add custom ERb helpers and so on. See the d
 stupid_formatter (http://rdoc.info/projects/colszowka/stupid_formatter) to learn how to 
 customize the formatting.
 
-Articles with a date in the future will not appear on the site, thus allowing you to prepare article
-that should be published later.
+Articles with a date in the future will not appear on the site, thus allowing you to draft or schedule 
+posts. Note that you can also create a folder to store your drafts and once they are ready to be 
+published just move it to the <code>articles</code> folder (this folder name can be changed in your 
+configuration).
 
 == Getting started
 
