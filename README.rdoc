@@ -23,7 +23,7 @@ so a basic article looks something like this:
   
 There are quite a few assumptions made by this format: You have to specify your title in yaml format
 upfront. You can also specify an author for this article. If you don't, it will fall-back to the
-default one (see configuration). Then two newlines must follow to seperate the yaml from the actual
+default one (see configuration). Then two newlines must follow to separate the yaml from the actual
 content. After this, you can type your blog post. If you want a summary, add in the summary/body
 delimiter "~", so Serious knows what you want.
   
@@ -233,7 +233,7 @@ working dir (a.k.a. where your config.ru sits)
   
 === Setting the pages path
 
-Similarily to the articles path, the pages will be served from your sites working directory's
+Similarly to the articles path, the pages will be served from your sites working directory's
 subdirectory <code>pages</code>. Customize this with:
 
   Serious.set :pages, '/home/youruser/mystaticpages'
@@ -263,7 +263,7 @@ with the url setting, which defaults to 'http://localhost:3000'
 === The date format
 
 There is a helper in the Date class for formatting dates according to the configuration specified
-in Serious.date_format and which is used in the frontend. It defaults to "%B %o %Y", which expands
+in Serious.date_format and which is used in the front-end. It defaults to "%B %o %Y", which expands
 to (i.e.) 'December 24th, 2009'. Notice that %o is a custom flag that is not built-in in the default
 strftime method of Date. It returns the ordinal name of the day. Customize with:
 
@@ -286,7 +286,7 @@ See section above for more information on Google Analytics.
 === Custom feed url in layout
 
 If you want to specify a different feed url for the head link tag, for example to point your readers
-to Feedburner, you can do so by specifiyng the <code>feed_url</code> option and setting up your
+to Feedburner, you can do so by specifying the <code>feed_url</code> option and setting up your
 feed to be burned by feedburner based upon <code>http://yoururl.com/atom.xml</code>.
 
   Serious.set :feed_url, 'http://feeds.feedburner.com/myfeedurl'  
@@ -339,7 +339,7 @@ to learn how to add your own formatters or erb helpers.
 * unescaped special chars in yaml front matter can lead to errors
 * text not readable in android
 * valid xhtml in demo setup
-* make summary delim configurable
+* make summary delimiter configurable
 * improve caching
 * make it possible to host in subdirectories
 * allow for choice between erb/haml templates
