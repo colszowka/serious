@@ -226,8 +226,8 @@ from the roots views and public subdirectory.
 === Setting the articles path
 
 You want your articles hosted from your home directory or fancy a different folder name?
-Use the :article property, which defaults to the articles subdirectory of the current
-working dir (a.k.a. where your config.ru sits)
+Use the :articles property, which defaults to the articles subdirectory of the current
+working directory (a.k.a. where your config.ru sits)
 
   Serious.set :articles, '/home/youruser/myblogposts'
   
@@ -265,7 +265,7 @@ with the url setting, which defaults to 'http://localhost:3000'
 There is a helper in the Date class for formatting dates according to the configuration specified
 in Serious.date_format and which is used in the front-end. It defaults to "%B %o %Y", which expands
 to (i.e.) 'December 24th, 2009'. Notice that %o is a custom flag that is not built-in in the default
-strftime method of Date. It returns the ordinal name of the day. Customize with:
+<code>strftime</code> method of Date. It returns the ordinal name of the day. Customize with:
 
   Serious.set :date_format, "%Y-%m-%d"
   
