@@ -23,7 +23,7 @@ so a basic article looks something like this:
   
 There are quite a few assumptions made by this format: You have to specify your title in yaml format
 upfront. You can also specify an author for this article. If you don't, it will fall-back to the
-default one (see configuration). Then two newlines must follow to seperate the yaml from the actual
+default one (see configuration). Then two newlines must follow to separate the yaml from the actual
 content. After this, you can type your blog post. If you want a summary, add in the summary/body
 delimiter "~", so Serious knows what you want.
   
@@ -33,8 +33,10 @@ the processing chain to your liking, add custom ERb helpers and so on. See the d
 stupid_formatter (http://rdoc.info/projects/colszowka/stupid_formatter) to learn how to 
 customize the formatting.
 
-Articles with a date in the future will not appear on the site, thus allowing you to prepare article
-that should be published later.
+Articles with a date in the future will not appear on the site, thus allowing you to draft or schedule 
+posts. Note that you can also create a folder to store your drafts and once they are ready to be 
+published just move it to the <code>articles</code> folder (this folder name can be changed in your 
+configuration).
 
 == Getting started
 
@@ -144,6 +146,30 @@ Please be aware that you have to run the Rake tasks from the top level directory
 <code>config.ru</code> file resides) since the config.ru file will be loaded to reflect your
 settings.
 
+== Creating routes by extending Serious
+
+If you'd like to create your own routes or use other features from Sinatra you can do that by 
+extending Serious. Create a ruby file in the root of your Serious blog. We'll create our own 
+class that extends Serious. Name the file and class however you like. For the following example 
+we'll go with a filename of app.rb and a class named MyApp.
+
+  require 'serious'
+    
+    class MyApp < Serious
+      # define your custom routes
+    end
+    
+  end
+
+From there all that is left is to update the config.ru file with the following:
+
+  require 'serious'
+  require './app'
+  
+  # Serious config overrides here if any...
+  
+  run MyApp
+
 == Comments with disqus
 
 You can activate comments for articles very easily with disqus (http://disqus.com) by setting
@@ -202,14 +228,14 @@ from the roots views and public subdirectory.
 === Setting the articles path
 
 You want your articles hosted from your home directory or fancy a different folder name?
-Use the :article property, which defaults to the articles subdirectory of the current
-working dir (a.k.a. where your config.ru sits)
+Use the :articles property, which defaults to the articles subdirectory of the current
+working directory (a.k.a. where your config.ru sits)
 
   Serious.set :articles, '/home/youruser/myblogposts'
   
 === Setting the pages path
 
-Similarily to the articles path, the pages will be served from your sites working directory's
+Similarly to the articles path, the pages will be served from your sites working directory's
 subdirectory <code>pages</code>. Customize this with:
 
   Serious.set :pages, '/home/youruser/mystaticpages'
@@ -239,9 +265,9 @@ with the url setting, which defaults to 'http://localhost:3000'
 === The date format
 
 There is a helper in the Date class for formatting dates according to the configuration specified
-in Serious.date_format and which is used in the frontend. It defaults to "%B %o %Y", which expands
+in Serious.date_format and which is used in the front-end. It defaults to "%B %o %Y", which expands
 to (i.e.) 'December 24th, 2009'. Notice that %o is a custom flag that is not built-in in the default
-strftime method of Date. It returns the ordinal name of the day. Customize with:
+<code>strftime</code> method of Date. It returns the ordinal name of the day. Customize with:
 
   Serious.set :date_format, "%Y-%m-%d"
   
@@ -262,7 +288,7 @@ See section above for more information on Google Analytics.
 === Custom feed url in layout
 
 If you want to specify a different feed url for the head link tag, for example to point your readers
-to Feedburner, you can do so by specifiyng the <code>feed_url</code> option and setting up your
+to Feedburner, you can do so by specifying the <code>feed_url</code> option and setting up your
 feed to be burned by feedburner based upon <code>http://yoururl.com/atom.xml</code>.
 
   Serious.set :feed_url, 'http://feeds.feedburner.com/myfeedurl'  
@@ -315,7 +341,7 @@ to learn how to add your own formatters or erb helpers.
 * unescaped special chars in yaml front matter can lead to errors
 * text not readable in android
 * valid xhtml in demo setup
-* make summary delim configurable
+* make summary delimiter configurable
 * improve caching
 * make it possible to host in subdirectories
 * allow for choice between erb/haml templates
