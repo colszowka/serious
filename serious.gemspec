@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'stupid_formatter', '>= 0.2.0'
   s.add_dependency 'builder', ">= 2.1.2"
   
-  s.add_development_dependency "shoulda", "2.10.3"
+  s.add_development_dependency "shoulda", "~> 2.10.3"
   s.add_development_dependency "hpricot", ">= 0.8.0"
   s.add_development_dependency "rack-test", ">= 0.5.0"
   s.add_development_dependency "rake", ">= 0.8.7"
