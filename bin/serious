@@ -77,7 +77,10 @@ end
 
 puts "Writing config.ru"
 File.open('config.ru', 'w+') do |config|
-  config.puts "require 'serious'"
+  config.puts "require 'rubygems'"
+  config.puts "require 'bundler'"
+  config.puts "Bundler.require"
+  config.puts ""
   config.puts "Serious.set :title, '#{DIRNAME}'"
   config.puts "Serious.set :author, 'Your Name here'"
   config.puts "Serious.set :url, 'http://#{DIRNAME}.heroku.com'"
