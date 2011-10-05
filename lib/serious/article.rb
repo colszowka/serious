@@ -50,7 +50,7 @@ class Serious::Article
     
       # Returns all article files in articles path
       def article_paths
-        @article_paths ||= Dir[File.join(Serious.articles, '*')].sort.reverse
+        @article_paths ||= Dir[File.join(Serious.articles, '**', '*.*')].sort.reverse
       end
   end
   
