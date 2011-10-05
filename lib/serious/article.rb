@@ -75,13 +75,13 @@ class Serious::Article
   # Cached lazy-loading of summary
   def summary
     return @summary if @summary
-    @summary ||= content.split("~", 2).first.chomp
+    @summary ||= content.split(Serious.summary_delimiter, 2).first.chomp
   end
   
   # Cached lazy-loading of body
   def body
     return @body if @body
-    @body ||= content.split("~", 2).join("").chomp
+    @body ||= content.split(Serious.summary_delimiter, 2).join("").chomp
   end
   
   # Compiles the url for this article
