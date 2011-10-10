@@ -25,8 +25,16 @@ There are quite a few assumptions made by this format: You have to specify your 
 upfront. You can also specify an author for this article. If you don't, it will fall-back to the
 default one (see configuration). Then two newlines must follow to separate the yaml from the actual
 content. After this, you can type your blog post. If you want a summary, add in the summary/body
-delimiter "~", so Serious knows what you want. You can change the summary delimiter in your configuration.
+delimiter "~", so Serious knows what you want. You can change the summary delimiter globally in your 
+configuration or per article, for example:
+
+  title: Article with custom summary delimiter
+  delimiter: [DELIM]
   
+  Some nice summary.
+  [DELIM]
+  Some article content.
+
 Serious makes use of StupidFormatter (http://github.com/colszowka/stupid_formatter) for formatting
 your articles, so you get ERb, Markdown and Coderay syntax highlighting for free and can customize
 the processing chain to your liking, add custom ERb helpers and so on. See the documentation of
@@ -341,7 +349,10 @@ to learn how to add your own formatters or erb helpers.
 === Summary delimiter
 
 In your posts you can specify an optional summary. When doing so you must provide a delimiter. By 
-default this value is '~', but can be customized as well:
+default this value is '~' which can be customized. If you do the change is global so you will 
+have update existing articles that have summaries to use the new delimiter. You can define a unique 
+summary delimiter per article if needed otherwise Serious fallback on the default configuration. 
+You can change the global summary delimiter with:
 
   Serious.set :summary_delimiter, '^'
 
