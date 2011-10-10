@@ -269,6 +269,24 @@ class TestArticle < Test::Unit::TestCase
     should('have summary equal to body') { assert_equal @article.summary, @article.body}
   end
   
+  context "The article 'custom-summary-delimiter'" do
+    setup do
+      @article = Serious::Article.first('custom-summary-delimiter')
+    end
+    
+    should "be valid" do
+      assert @article.valid?
+    end
+    
+    should 'have summary "Can we support a custom summary delimiter?"' do
+      assert_equal "Can we support a custom summary delimiter?", @article.summary
+    end
+    
+    should 'have body "Looks like we can! Nicely done."' do
+      assert_equal "Can we support a custom summary delimiter?\n\nLooks like we can! Nicely done.", @article.body
+    end
+  end
+  
   # ========================================================================
   # Tests for validation
   # ========================================================================
