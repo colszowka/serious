@@ -10,7 +10,7 @@ class TestArticle < Test::Unit::TestCase
       @articles = Serious::Article.all
     end
 
-    should("return 4 articles") { assert_equal 4, @articles.length }
+    should("return 5 articles") { assert_equal 5, @articles.length }
     should "have only instances of Serious::Article in the collection" do
       assert @articles.all? {|a| a.instance_of?(Serious::Article) }
     end
@@ -63,12 +63,12 @@ class TestArticle < Test::Unit::TestCase
     
     should("return 2 articles") { assert_equal 2, @articles.length }
     
-    should "have 2009-04-01 as the first article's date" do
-      assert_equal Date.new(2009, 4, 1), @articles.first.date
+    should "have 2009-10-06 as the first article's date" do
+      assert_equal Date.new(2009, 10, 6), @articles.first.date
     end
     
-    should "have 2000-01-01 as the last article's date" do
-      assert_equal Date.new(2000, 1, 1), @articles.last.date
+    should "have 2009-04-01 as the last article's date" do
+      assert_equal Date.new(2009, 4, 1), @articles.last.date
     end
   end
   
