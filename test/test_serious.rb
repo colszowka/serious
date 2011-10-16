@@ -131,7 +131,7 @@ class TestSerious < Test::Unit::TestCase
     
     should_respond_with 200
     should_set_cache_control_to 300
-    should_contain_text "Archives", "#container h2:first"
+    should_contain_text "Archives for christmas", "#container h2:first"
     should_contain_elements 1, "ul.archives li"
     should_contain_text "Merry Christmas! ☃", "ul.archives li:first"
   end

@@ -77,7 +77,7 @@ class Serious < Sinatra::Base
 
   get "/archives/:tag" do
     @articles = Article.all :tag => params[:tag]
-    @title = "Archives"
+    @title = "Archives for #{params[:tag]}"
     erb :archives
   end
   
