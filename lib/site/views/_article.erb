@@ -7,7 +7,7 @@
       <% unless article.tags.empty? %>
         <div class="tags">
           <% article.tags.each do |tag| %>
-            <a href="/tagged/<%= tag %>"><%= tag %></a>
+            <a href="/archives/<%= tag %>"><%= tag %></a>
           <% end %>
         </div>
       <% end %>
