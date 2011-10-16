@@ -18,6 +18,7 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Merry Christmas! ☃", "ul#articles li:first"
     should_contain_text "Merry christmas, dear reader! ☃", "ul#articles li:first"
     should_contain_text "December 24th 2009", "ul#articles li:first .date"
+    should_contain_elements 2, "ul#articles li:first .tags a"
     
     should_not_contain_text "This ain't rails, yet it has ☃!", "ul#articles li:first"
     
@@ -147,6 +148,9 @@ class TestSerious < Test::Unit::TestCase
     setup { get '/2009/12/24/merry-christmas/' }
     should_respond_with 200
     should_contain_text "Merry Christmas! ☃", "#container h2:first"
+    should_contain_elements 2, "#container .tags a"
+    should_contain_text "christmas", "#container .tags"
+    should_contain_text "bar", "#container .tags"
   end
   
   context "GET /2009/12/11/ruby-is-the-shit" do
@@ -232,6 +236,9 @@ class TestSerious < Test::Unit::TestCase
       should_contain_text "Merry Christmas! &#9731;", "feed entry:first title"
     end
     should_contain_text "Christoph Olszowka", "feed entry:first author name:first"
+
+    should_contain_text "christmas", "feed entry:first"
+    should_contain_text "bar", "feed entry:first"
   end
   
   # ===================================================================
