@@ -77,7 +77,59 @@ class TestArticle < Test::Unit::TestCase
       assert_equal [], Serious::Article.all(:limit => 50, :offset => 5)
     end
   end
-  
+
+  context "Serious::Article.all(:tag => 'christmas')" do
+    setup do
+      @articles = Serious::Article.all(:tag => "christmas")
+    end
+
+    should("return 1 article") { assert_equal 1, @articles.length }
+
+    should "have 2009-12-24 as the article's date" do
+      assert_equal Date.new(2009, 12, 24), @articles.first.date
+    end
+  end
+
+  context "Serious::Article.all(:tag => 'bar')" do
+    setup do
+      @articles = Serious::Article.all(:tag => "bar")
+    end
+
+    should("return 2 articles") { assert_equal 2, @articles.length }
+
+    should "have 2009-12-24 as the first article's date" do
+      assert_equal Date.new(2009, 12, 24), @articles.first.date
+    end
+
+    should "have 2009-04-01 as the last article's date" do
+      assert_equal Date.new(2009, 4, 1), @articles.last.date
+    end
+  end
+
+  context "Serious::Article.all(:limit => 1, :tag => 'bar')" do
+    setup do
+      @articles = Serious::Article.all(:limit => 1, :tag => "bar")
+    end
+
+    should("return 1 article") { assert_equal 1, @articles.length }
+
+    should "have 2009-12-24 as the article's date" do
+      assert_equal Date.new(2009, 12, 24), @articles.first.date
+    end
+  end
+
+  context "Serious::Article.all(:limit => 1, :offset => 1, :tag => 'bar')" do
+    setup do
+      @articles = Serious::Article.all(:limit => 1, :offset => 1, :tag => "bar")
+    end
+
+    should("return 1 article") { assert_equal 1, @articles.length }
+
+    should "have 2009-04-01 as the article's date" do
+      assert_equal Date.new(2009, 4, 1), @articles.first.date
+    end
+  end
+
   # ========================================================================
   # Tests for initializer and extracting date and permalink from path
   # ========================================================================
@@ -350,6 +402,17 @@ class TestArticle < Test::Unit::TestCase
       
       should "include 'Wrong tags given' in errors" do 
         assert @article.errors.include?('Wrong tags given'), @article.errors.inspect
+      end
+      
+      context "after setting tags to [1, 'foo'] and revalidating" do
+        setup do
+          @article.instance_variable_set :@yaml, {"tags" => [ 1, "foo" ]}
+          @article.valid?
+        end
+        
+        should "include 'Wrong tags given' in errors" do 
+          assert @article.errors.include?('Wrong tags given'), @article.errors.inspect
+        end
       end
     end
   end
