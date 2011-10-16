@@ -74,6 +74,12 @@ class Serious < Sinatra::Base
     @title = "Archives"
     erb :archives
   end
+
+  get "/archives/:tag" do
+    @articles = Article.all :tag => params[:tag]
+    @title = "Archives"
+    erb :archives
+  end
   
   get "/pages" do
     @articles = Page.all

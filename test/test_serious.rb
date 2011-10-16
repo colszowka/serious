@@ -126,6 +126,16 @@ class TestSerious < Test::Unit::TestCase
     should_contain_text "Disco 2000", "ul.archives li:last"
   end
   
+  context "GET /archives/christmas" do
+    setup { get '/archives/christmas' }
+    
+    should_respond_with 200
+    should_set_cache_control_to 300
+    should_contain_text "Archives", "#container h2:first"
+    should_contain_elements 1, "ul.archives li"
+    should_contain_text "Merry Christmas! ☃", "ul.archives li:first"
+  end
+  
   # ===================================================================
   # Tests for the article view
   # ===================================================================
