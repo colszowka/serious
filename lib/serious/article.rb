@@ -72,6 +72,11 @@ class Serious::Article
     @author ||= yaml["author"] || Serious.author
   end
   
+  # Lazy-loading tags accessor
+  def tags
+    @tags ||= yaml["tags"] || []
+  end
+  
   # Cached lazy-loading of summary
   def summary
     return @summary if @summary
@@ -114,6 +119,7 @@ class Serious::Article
     @errors = []
     errors << "No title given" unless title.kind_of?(String) and title.length > 0
     errors << "No author given" unless author.kind_of?(String) and author.length > 0
+    errors << "Wrong tags given" unless tags.kind_of?(Array)
     
     begin
       summary.formatted  

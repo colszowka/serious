@@ -1,4 +1,7 @@
 title: Foo Bar
+tags:
+- foo
+- bar
 
 Baz!
 

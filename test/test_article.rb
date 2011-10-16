@@ -263,6 +263,7 @@ class TestArticle < Test::Unit::TestCase
       assert @article.valid?
     end
     should("have title 'Foo Bar'") { assert_equal 'Foo Bar', @article.title }
+    should("have tags 'foo' and 'bar'") { assert_equal [ 'foo', 'bar' ], @article.tags }
     should('have summary "Baz!"')  { assert_equal "Baz!\n", @article.summary }
     should('have body "Baz!"')     { assert_equal "Baz!\n", @article.body }
     should("have 'TheDeadSerious' as author") { assert_equal 'TheDeadSerious', @article.author }
@@ -333,6 +334,22 @@ class TestArticle < Test::Unit::TestCase
     should "raise Serious::Article::InvalidFilename exception on load" do 
       assert_raise Serious::Article::InvalidFilename do
         @article = Serious::Article.new('2009-12_12-foo-bar.txt')
+      end
+    end
+  end
+
+  context "An article with invalid tags" do
+    setup do 
+      @article = Serious::Article.new('2009-12-12-foo-bar.txt')
+      @article.instance_variable_set :@yaml, {"tags" => "stupid content"}
+    end
+
+    should("not be valid") { assert !@article.valid? }
+    context "after validating" do
+      setup { @article.valid? }
+      
+      should "include 'Wrong tags given' in errors" do 
+        assert @article.errors.include?('Wrong tags given'), @article.errors.inspect
       end
     end
   end
