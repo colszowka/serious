@@ -88,7 +88,7 @@ File.open('config.ru', 'w+') do |config|
   if public? and views?
     config.puts "Serious.set :root, Dir.getwd"
   elsif public?
-    config.puts "Serious.set :public, File.join(Dir.getwd, 'public')"
+    config.puts "Serious.set :public_folder, File.join(Dir.getwd, 'public')"
   elsif views?
     config.puts "Serious.set :views, File.join(Dir.getwd, 'views')"
   end
