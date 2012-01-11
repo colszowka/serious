@@ -349,12 +349,12 @@ to learn how to add your own formatters or erb helpers.
 === Summary delimiter
 
 In your posts you can specify an optional summary. When doing so you must provide a delimiter. By 
-default this value is '~' which can be customized. If you do the change is global so you will 
-have update existing articles that have summaries to use the new delimiter. You can define a unique 
-summary delimiter per article if needed otherwise Serious fallback on the default configuration. 
-You can change the global summary delimiter with:
+default the value is '~' which can be changed. If you do the change globally (as in the example 
+below) you will have to update existing articles that have summaries to use the new delimiter. Although, 
+you can define a unique summary delimiter per article (refer to the example at the top) if needed, otherwise 
+Serious will fallback on this default configuration. You can change the global summary delimiter with:
 
-  Serious.set :summary_delimiter, '^'
+  Serious.set :summary_delimiter, '[SUMMARY]'
 
 == TODO
 
