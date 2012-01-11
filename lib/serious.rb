@@ -26,6 +26,7 @@ class Serious < Sinatra::Base
   
   before do
     headers['Cache-Control'] = "public, max-age=#{Serious.cache_timeout}"
+    params[:tag].gsub! ' ', '-' if params.has_key? :tag
   end
   
   helpers do
