@@ -49,7 +49,18 @@ class Serious::Article
     def first(*args)
       find(*args).first
     end
-    
+
+    #
+    # Lists all the tags of all articles (very fucking expensive task at first time).
+    #
+    def tags
+      @tags ||= find.map(&:tags).flatten.inject({}) do |tags, tag|
+        tags[tag] ||= 0
+        tags[tag] += 1
+        tags
+      end
+    end
+
     private
     
       # Returns all article files in articles path

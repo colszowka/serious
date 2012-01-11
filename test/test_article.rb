@@ -5,6 +5,16 @@ class TestArticle < Test::Unit::TestCase
   # ========================================================================
   # Tests for all articles and limited all articles finder
   # ========================================================================
+  context "Serious::Article.tags" do
+    should "show all tags of all articles" do
+      expected = { "christmas" => 1, "bar" => 2, "foo" => 1 }
+      assert_equal expected, Serious::Article.tags
+    end
+  end
+
+  # ========================================================================
+  # Tests for all articles and limited all articles finder
+  # ========================================================================
   context "Serious::Article.all" do
     setup do
       @articles = Serious::Article.all
