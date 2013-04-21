@@ -15,6 +15,11 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
       xml.author { xml.name article.author }
       xml.summary article.summary.formatted, "type" => "html"
       xml.content article.body.formatted, "type" => "html"
+      unless article.tags.empty?
+        article.tags.each do |tag|
+          xml.category "term" => tag
+        end
+      end
     end
   end
 end

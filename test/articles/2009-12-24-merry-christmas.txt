@@ -1,5 +1,8 @@
 title: Merry Christmas! ☃
 author: Christoph Olszowka
+tags:
+- christmas
+- bar
 
 Merry christmas, dear reader! ☃
 ~

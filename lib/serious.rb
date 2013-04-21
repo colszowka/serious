@@ -18,7 +18,7 @@ class Serious < Sinatra::Base
   set :articles, Proc.new { File.join(Dir.getwd, 'articles') }
   set :pages, Proc.new { File.join(Dir.getwd, 'pages') }
   set :static, true # Required to serve static files, see http://www.sinatrarb.com/configuration.html
-  set :future, true
+  set :future, false
   
   not_found do
     erb :"404"
@@ -26,6 +26,7 @@ class Serious < Sinatra::Base
   
   before do
     headers['Cache-Control'] = "public, max-age=#{Serious.cache_timeout}"
+    params[:tag].gsub! ' ', '-' if params.has_key? :tag
   end
   
   helpers do
@@ -72,6 +73,12 @@ class Serious < Sinatra::Base
   get "/archives" do
     @articles = Article.all
     @title = "Archives"
+    erb :archives
+  end
+
+  get "/archives/:tag" do
+    @articles = Article.all :tag => params[:tag]
+    @title = "Archives for #{params[:tag]}"
     erb :archives
   end
   

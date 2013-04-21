@@ -9,14 +9,18 @@ class Serious::Article
 
   class << self
     #
-    # Returns all articles. Can be drilled down by (optional) :limit and :offset options
+    # Returns all articles. Can be drilled down by (optional) :limit,
+    # :offset and :tag options
     #
     def all(options={})
-      options = {:limit => 10000, :offset => 0}.merge(options)
+      options = {:limit => 10000, :offset => 0, :tag => nil}.merge(options)
       now = DateTime.now
       articles = article_paths.map do |article_path|
         article = new(article_path)
-        article if article && (Serious.future || article.date <= now)
+        if article && (Serious.future || article.date <= now)
+          next article unless options[:tag]
+          article if article.tags.include? options[:tag]
+        end
       end.compact[options[:offset]...options[:limit]+options[:offset]]
       
       articles || []
@@ -45,7 +49,18 @@ class Serious::Article
     def first(*args)
       find(*args).first
     end
-    
+
+    #
+    # Lists all the tags of all articles (very fucking expensive task at first time).
+    #
+    def tags
+      @tags ||= find.map(&:tags).flatten.inject({}) do |tags, tag|
+        tags[tag] ||= 0
+        tags[tag] += 1
+        tags
+      end
+    end
+
     private
     
       # Returns all article files in articles path
@@ -70,6 +85,11 @@ class Serious::Article
   # Lazy-loading author accessor with fallback to Serious.author
   def author
     @author ||= yaml["author"] || Serious.author
+  end
+  
+  # Lazy-loading tags accessor
+  def tags
+    @tags ||= yaml["tags"] || []
   end
   
   # Cached lazy-loading of summary
@@ -114,7 +134,8 @@ class Serious::Article
     @errors = []
     errors << "No title given" unless title.kind_of?(String) and title.length > 0
     errors << "No author given" unless author.kind_of?(String) and author.length > 0
-    
+    errors << "Wrong tags given" unless tags.kind_of?(Array) and tags_are_strings?
+
     begin
       summary.formatted  
     rescue => err
@@ -140,7 +161,12 @@ class Serious::Article
     rescue NoMethodError => err
       raise InvalidFilename, "Failed to extract date or permalink from #{File.basename(path)}"
     end
-    
+
+    # Will check that every tag is a String
+    def tags_are_strings?
+      tags.inject(true) { |r, tag| r && tag.is_a?(String) }
+    end
+
     #
     # Will read the actual article file and store the yaml front processed in @yaml,
     # the content in @content
