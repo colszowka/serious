@@ -14,7 +14,7 @@ if !(DIRNAME = ARGS[0])
   puts "              By default your site will use the public folder supplied with the serious gem"
   puts "  --no-git:   Will not create a new git repository (by default, it does)"
   puts "  --heroku:   Creates a heroku app named with dirname and pushes your site to it."
-  puts "              Requires the heroku gem to be installed"
+  puts "              Requires the heroku toolbelt to be installed"
   exit 1
 end
 
