@@ -119,7 +119,7 @@ end
 if heroku?
   if git?
     puts "Creating heroku app"
-    if system "heroku create #{DIRNAME} --stack bamboo-mri-1.9.2"
+    if system "heroku apps:create #{DIRNAME}"
       puts "Pushing to heroku - in 5 seconds"
       sleep 5
       if system 'git push heroku master'
