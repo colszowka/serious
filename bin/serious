@@ -102,6 +102,8 @@ File.open("Gemfile", "w+") do |gems|
   gems.puts "gem 'thin'"
 end
 
+system "bundle install"
+
 puts "Creating Rakefile"
 File.open('Rakefile', "w+") do |rake|
   rake.puts "require 'serious'"
