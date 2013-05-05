@@ -14,7 +14,7 @@ if !(DIRNAME = ARGS[0])
   puts "              By default your site will use the public folder supplied with the serious gem"
   puts "  --no-git:   Will not create a new git repository (by default, it does)"
   puts "  --heroku:   Creates a heroku app named with dirname and pushes your site to it."
-  puts "              Requires the heroku gem to be installed"
+  puts "              Requires the heroku toolbelt to be installed"
   exit 1
 end
 
@@ -97,9 +97,12 @@ end
 
 puts "Creating bundler Gemfile"
 File.open("Gemfile", "w+") do |gems|
-  gems.puts "source :rubygems"
-  gems.puts 'gem "serious"'
+  gems.puts "source 'https://rubygems.org'"
+  gems.puts "gem 'serious'"
+  gems.puts "gem 'thin'"
 end
+
+system "bundle install"
 
 puts "Creating Rakefile"
 File.open('Rakefile', "w+") do |rake|
@@ -116,7 +119,7 @@ end
 if heroku?
   if git?
     puts "Creating heroku app"
-    if system "heroku create #{DIRNAME} --stack bamboo-mri-1.9.2"
+    if system "heroku apps:create #{DIRNAME}"
       puts "Pushing to heroku - in 5 seconds"
       sleep 5
       if system 'git push heroku master'
