@@ -50,7 +50,15 @@ class Serious::Article
     
       # Returns all article files in articles path
       def article_paths
-        @article_paths ||= Dir[File.join(Serious.articles, '*')].sort.reverse
+        @article_paths ||= Dir[File.join(Serious.articles, '**', '*.*')].sort { |x,y| 
+          
+          # Since we can have any amount of subdirectories, we have to parse the file name from 
+          # the path and sort on just that rather than the entire path as we had done originally
+          file1 = File.basename(x)
+          file2 = File.basename(y)
+          
+          file2 <=> file1 
+        }
       end
   end
   
