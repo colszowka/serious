@@ -18,7 +18,7 @@ class Serious < Sinatra::Base
   set :articles, Proc.new { File.join(Dir.getwd, 'articles') }
   set :pages, Proc.new { File.join(Dir.getwd, 'pages') }
   set :static, true # Required to serve static files, see http://www.sinatrarb.com/configuration.html
-  set :future, true
+  set :future, false
   
   not_found do
     erb :"404"
