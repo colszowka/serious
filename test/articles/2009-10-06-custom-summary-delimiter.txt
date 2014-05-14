@@ -1,0 +1,6 @@
+title: Testing Custom Summary Delimiter
+delimiter: '[DELIM]'
+
+Can we support a custom summary delimiter?
+[DELIM]
+Looks like we can! Nicely done.

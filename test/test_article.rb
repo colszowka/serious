@@ -10,7 +10,7 @@ class TestArticle < Test::Unit::TestCase
       @articles = Serious::Article.all
     end
 
-    should("return 4 articles") { assert_equal 4, @articles.length }
+    should("return 5 articles") { assert_equal 5, @articles.length }
     should "have only instances of Serious::Article in the collection" do
       assert @articles.all? {|a| a.instance_of?(Serious::Article) }
     end
@@ -63,12 +63,12 @@ class TestArticle < Test::Unit::TestCase
     
     should("return 2 articles") { assert_equal 2, @articles.length }
     
-    should "have 2009-04-01 as the first article's date" do
-      assert_equal Date.new(2009, 4, 1), @articles.first.date
+    should "have 2009-10-06 as the first article's date" do
+      assert_equal Date.new(2009, 10, 6), @articles.first.date
     end
     
-    should "have 2000-01-01 as the last article's date" do
-      assert_equal Date.new(2000, 1, 1), @articles.last.date
+    should "have 2009-04-01 as the last article's date" do
+      assert_equal Date.new(2009, 4, 1), @articles.last.date
     end
   end
   
@@ -267,6 +267,24 @@ class TestArticle < Test::Unit::TestCase
     should('have body "Baz!"')     { assert_equal "Baz!\n", @article.body }
     should("have 'TheDeadSerious' as author") { assert_equal 'TheDeadSerious', @article.author }
     should('have summary equal to body') { assert_equal @article.summary, @article.body}
+  end
+  
+  context "The article 'custom-summary-delimiter'" do
+    setup do
+      @article = Serious::Article.first('custom-summary-delimiter')
+    end
+    
+    should "be valid" do
+      assert @article.valid?
+    end
+    
+    should 'have summary "Can we support a custom summary delimiter?"' do
+      assert_equal "Can we support a custom summary delimiter?", @article.summary
+    end
+    
+    should 'have body "Looks like we can! Nicely done."' do
+      assert_equal "Can we support a custom summary delimiter?\n\nLooks like we can! Nicely done.", @article.body
+    end
   end
   
   # ========================================================================
